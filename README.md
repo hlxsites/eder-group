@@ -1,9 +1,9 @@
 # Your Project's Title...
-Your project's description...
+Franklin Project for Eder Group corporate site
 
 ## Environments
-- Preview: https://main--{repo}--{owner}.hlx.page/
-- Live: https://main--{repo}--{owner}.hlx.live/
+- Preview: https://main--eder-group--hlxsites.hlx.page/
+- Live: https://main--eder-group--hlxsites.hlx.live/
 
 ## Installation
 
