@@ -1,14 +1,158 @@
 footer {
-  padding: 2rem;
   background-color: var(--overlay-background-color);
   font-size: var(--body-font-size-s);
 }
 
-footer .footer {
-  max-width: 1200px;
-  margin: auto;
+.footer ul{
+  list-style-type: none;
+  padding-inline-start: 0;
 }
 
-footer .footer p {
+.footer a {
+  color: white;
+}
+
+.footer h5 {
+  font-size: 23px;
   margin: 0;
+  padding-top: 20px;
+}
+
+.footer picture {
+  display: block;
+}
+
+.footer > div > div {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.footer > div > div:first-child {
+  font-size: 16px;
+  display: flex;
+  flex-flow: column wrap;
+  background-color: white;
+}
+
+.footer > div > div:first-child > p {
+  width: 100%;
+}
+
+.footer > div > div:first-child > p > a > picture > img {
+  width: 100%;
+  height: 100%;
+}
+
+.footer > div > div:first-child > ul > li {
+  margin-bottom: 25px;
+}
+
+.footer > div > div:nth-child(2) > ul {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0;
+  padding-bottom: 33px;
+  padding-top: 33px;
+  font-size: 16px;
+}
+
+.footer > div > div:nth-child(2) > ul > li {
+  width: 100%;
+}
+
+.footer > div > div:first-child > ul:first-of-type {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.footer > div > div:first-child > ul:first-of-type > li {
+  width: 205px;
+  display: inline-block;
+}
+
+.footer > div > div:first-child > ul:last-of-type {
+  display: flex;
+}
+
+.footer > div > div:first-child > ul:last-of-type > li {
+  padding: 5px;
+}
+
+.footer .icon-flaticon {
+  /* padding used in the original site, looks a bit fragile */
+  padding-right: 5px;
+}
+
+.footer > div > div:first-child a {
+  color: black;
+}
+
+.footer > div > div:nth-child(2) {
+  background-color: #494745;
+  color: white;
+
+  /* Used in the body in the original site, let's discuss whether this is desired */
+  line-height: 1.4286;
+}
+
+.footer > div > div:nth-child(2) .icon svg {
+  height: 1em;
+}
+
+.footer > div > div:last-child {
+  background-color: #303030;
+  color: white;
+  display: flex;
+  flex-flow: column wrap;
+  text-align: center;
+  justify-content: center;
+  font-size: 14px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.footer > div > div:last-child > p {
+  margin: 0;
+  display: inline-block;
+}
+
+.footer > div > div:last-child > p:nth-child(2),
+.footer > div > div:last-child > p:nth-child(3) {
+  margin: 0 0 10px;
+  padding: 0 15px;
+}
+
+@media (min-width: 768px) {
+  .footer > div > div:first-child {
+    max-height: 340px;
+  }
+
+  .footer > div > div:first-child > p {
+    width: auto;
+  }
+
+  .footer > div > div:first-child > ul {
+    width: 75%;
+  }
+
+  .footer > div > div:nth-child(2) > ul > li {
+    width: 50%;
+  }
+
+.footer > div > div:last-child {
+    height: 70px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .footer > div > div:nth-child(2) > ul > li {
+    width: 33.333%;
+  }
+
+  .footer > div > div {
+    max-width: 1200px;
+
+    /* workaround for "margin: auto" due to "triple footer" (white + gray + black) */
+    padding: 0 calc((100vw - 1200px)/2);
+  }
 }
