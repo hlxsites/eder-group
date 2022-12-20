@@ -21,9 +21,66 @@ function injectSidebarSection(document) {
     e.after(table);
     // more elements after the sidebar? yes = add section delimiter
     if (e.parentElement.nextElementSibling.childElementCount > 0) {
-       table.after(document.createElement('hr'));
+      table.after(document.createElement('hr'));
     }
   });
+}
+
+// convert columns
+function transformHeros(document) {
+  document.querySelectorAll('.background-image .title').forEach((div) => {
+    const cells = [['Hero']];
+    const wrapper = div.parentElement;
+    if (wrapper.hasAttribute('data-bg')) {
+      const bgImgUrl = wrapper.getAttribute('data-bg').startsWith('url(')
+        ? wrapper
+          .getAttribute('data-bg')
+          .substring(4, wrapper.getAttribute('data-bg').length - 1)
+        : wrapper.getAttribute('data-bg');
+      const image = document.createElement('img');
+      image.src = bgImgUrl;
+      const container = document.createElement('div');
+      container.appendChild(image);
+      container.appendChild(wrapper.querySelector('h3'));
+      cells.push([container]);
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      wrapper.replaceWith(table);
+    }
+  });
+}
+
+// convert teaser cards
+function transformTeaserCards(document) {
+  const cells = [['Cards  (Teaser)']];
+  document.querySelectorAll('.container-fluid figure').forEach((figure) => {
+    const container = document.createElement('div');
+    const image = figure.querySelector('img.card-background');
+    const title = figure.querySelector('.card-title');
+    container.appendChild(image);
+    container.appendChild(title);
+
+    const row = [container];
+    const content = figure.querySelectorAll('.card-content .card-entry');
+    if (content) {
+      content.forEach((entry) => row.push(entry));
+    }
+    cells.push(row);
+  });
+  const table = WebImporter.DOMUtils.createTable(cells, document);
+  document.querySelector('.container-fluid figure').replaceWith(table);
+}
+
+// convert mini teaser cards
+function transformMiniTeaserCards(document) {
+  const cells = [['Cards  (Mini Teaser)']];
+  document.querySelectorAll('.container-fluid .card').forEach((div) => {
+    const bgImage = div.querySelector('.card-header img.card-background');
+    const logoImage = div.querySelector('.card-header img.card-logo');
+    const content = div.querySelector('.card-body');
+    cells.push([bgImage, logoImage, content]);
+  });
+  const table = WebImporter.DOMUtils.createTable(cells, document);
+  document.querySelector('.container-fluid .card').replaceWith(table);
 }
 
 // convert embed iframe objects
@@ -55,9 +112,7 @@ function transformButtons(document) {
 
   document.querySelectorAll('.main-content .coa-button').forEach((button) => {
     const buttonLink = button.innerHTML;
-    const type = BUTTON_MAPPINGS.find((e) =>
-      button.classList.contains(e.class),
-    );
+    const type = BUTTON_MAPPINGS.find((e) => button.classList.contains(e.class));
     if (type) {
       const wrapper = document.createElement(type.tag);
       wrapper.innerHTML = buttonLink;
@@ -75,8 +130,8 @@ function transformImageGallery(document) {
       entries.forEach((entry, i) => {
         entry.alt = `Gallery Image ${i}`;
         cells.push([entry]);
-      } )
-      
+      });
+
       const table = WebImporter.DOMUtils.createTable(cells, document);
       gallery.replaceWith(table);
     }
@@ -85,9 +140,10 @@ function transformImageGallery(document) {
 
 // inject section delimiter and metadata for sidebar
 function cleanUpNBSP(document) {
-  const mainContent = document
-    .querySelector('.page-container');
-  mainContent.innerHTML = mainContent.innerHTML.replaceAll('\t&nbsp;', '');
+  const mainContent = document.querySelector('.page-container');
+  if (mainContent) {
+    mainContent.innerHTML = mainContent.innerHTML.replaceAll('\t&nbsp;', '');
+  }
 }
 
 // Transform all image urls
@@ -133,7 +189,7 @@ export default {
   /**
    * Apply DOM pre processing: try to use the original JPEG image if available
    * @param {HTMLDocument} document The document
-  */
+   */
   preprocess: ({ document }) => {
     document.querySelectorAll('img').forEach((img) => {
       if (img.src && img.src.endsWith('.webp')) {
@@ -156,10 +212,7 @@ export default {
    */
   transformDOM: ({
     // eslint-disable-next-line no-unused-vars
-    document,
-    url,
-    html,
-    params,
+    document, url, html, params,
   }) => {
     // prepare page meta data block
     const meta = {};
@@ -187,10 +240,10 @@ export default {
 
     // use helper method to remove header, footer, etc.
     WebImporter.DOMUtils.remove(document.body, [
+      'footer',
       '.offcanvas.offcanvas-contact',
       'nav.sidebar-offcanvas',
       'nav.navbar',
-      '.container-fluid',
       '.container>ol',
       '.staff .visible-ma-button',
       '.element.element-tf_footerbox',
@@ -201,8 +254,11 @@ export default {
     [
       cleanUpNBSP,
       injectSidebarSection,
+      transformHeros,
       transformEmbeds,
       transformButtons,
+      transformTeaserCards,
+      transformMiniTeaserCards,
       transformImageGallery,
       makeProxySrcs,
       makeAbsoluteLinks,
@@ -223,9 +279,6 @@ export default {
    */
   generateDocumentPath: ({
     // eslint-disable-next-line no-unused-vars
-    document,
-    url,
-    html,
-    params,
+    document, url, html, params,
   }) => new URL(url).pathname.replace(/\.html$/, '').replace(/\/$/, ''),
 };
