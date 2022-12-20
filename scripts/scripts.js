@@ -40,6 +40,27 @@ function buildAutoBlocks(main) {
   }
 }
 
+function linkPicture(picture) {
+  const nextSib = picture.parentNode.nextElementSibling;
+  if (nextSib) {
+    const a = nextSib.querySelector('a');
+    if (a && a.textContent.trim().startsWith('https://')) {
+      a.innerHTML = '';
+      a.className = '';
+      a.appendChild(picture);
+    }
+  }
+}
+
+/* workaround for word not being able to add links to pictures */
+export function decorateLinkedPictures(block) {
+  block.querySelectorAll('picture').forEach((picture) => {
+    if (!picture.closest('div.block')) {
+      linkPicture(picture);
+    }
+  });
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -50,6 +71,7 @@ export function decorateMain(main) {
   decorateButtons(main);
   decorateIcons(main);
   buildAutoBlocks(main);
+  decorateLinkedPictures(main);
   decorateSections(main);
   decorateBlocks(main);
 }
