@@ -95,7 +95,10 @@ export function customDecorateIcons(element = document) {
     const iconPrefix = `${collectionName}-`;
     if (icon.startsWith(iconPrefix)) {
       span.classList.add(`icon-${collectionName}`);
+      return true;
     }
+
+    return false;
   }
 
   element.querySelectorAll('span.icon').forEach(async (span) => {
@@ -103,11 +106,27 @@ export function customDecorateIcons(element = document) {
       return;
     }
 
-    customDecorateIcon(span, 'flaticon');
-    customDecorateIcon(span, 'eder');
-  });
+    if (customDecorateIcon(span, 'flaticon')) {
+      return;
+    }
+    if (customDecorateIcon(span, 'eder')) {
+      return;
+    }
 
-  decorateIcons(element);
+    const icon = span.classList[1].substring(5);
+    // eslint-disable-next-line no-use-before-define
+    const resp = await fetch(`${window.hlx.codeBasePath}/icons/${icon}.svg`);
+    if (resp.ok) {
+      const iconHTML = await resp.text();
+      if (iconHTML.match(/<style/i)) {
+        const img = document.createElement('img');
+        img.src = `data:image/svg+xml,${encodeURIComponent(iconHTML)}`;
+        span.appendChild(img);
+      } else {
+        span.innerHTML = iconHTML;
+      }
+    }
+  });
 }
 
 /**
