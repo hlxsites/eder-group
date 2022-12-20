@@ -1,5 +1,7 @@
 /* below the fold CSS goes here */
 
+/* Add Flaticon font and icon classes */
+
 @font-face {
     font-family: Flaticon;
     src: url("../fonts/flaticon.woff") format("woff");
@@ -7,6 +9,248 @@
     font-weight: 400;
     font-display: swap;
 }
+
+.flaticon-golfer::before {
+    content: "\f100"
+}
+
+.flaticon-machine::before {
+    content: "\f101"
+}
+
+.flaticon-cell-phone::before {
+    content: "\f102"
+}
+
+.flaticon-info::before {
+    content: "\f103"
+}
+
+.flaticon-power::before {
+    content: "\f104"
+}
+
+.flaticon-construction::before {
+    content: "\f105"
+}
+
+.flaticon-excavator-construction::before {
+    content: "\f106"
+}
+
+.flaticon-cow::before {
+    content: "\f107"
+}
+
+.flaticon-piston::before {
+    content: "\f108"
+}
+
+.flaticon-calendar::before {
+    content: "\f109"
+}
+
+.flaticon-dots::before {
+    content: "\f10a"
+}
+
+.flaticon-play::before {
+    content: "\f10b"
+}
+
+.flaticon-cross::before {
+    content: "\f10c"
+}
+
+.flaticon-editing::before {
+    content: "\f10d"
+}
+
+.flaticon-caret-down::before {
+    content: "\f10e"
+}
+
+.flaticon-placeholder::before {
+    content: "\f10f"
+}
+
+.flaticon-training::before {
+    content: "\f110"
+}
+
+.flaticon-guarantee::before {
+    content: "\f111"
+}
+
+.flaticon-edv::before {
+    content: "\f112"
+}
+
+.flaticon-dot::before {
+    content: "\f113"
+}
+
+.flaticon-tow::before {
+    content: "\f114"
+}
+
+.flaticon-triangle-right::before {
+    content: "\f115"
+}
+
+.flaticon-connection::before {
+    content: "\f116"
+}
+
+.flaticon-customer-service::before {
+    content: "\f117"
+}
+
+.flaticon-transport-car::before {
+    content: "\f118"
+}
+
+.flaticon-weightlifting::before {
+    content: "\f119"
+}
+
+.flaticon-user::before {
+    content: "\f11a"
+}
+
+.flaticon-drill::before {
+    content: "\f11b"
+}
+
+.flaticon-breakdown-service::before {
+    content: "\f11c"
+}
+
+.flaticon-arrow-down::before {
+    content: "\f11d"
+}
+
+.flaticon-special-construction::before {
+    content: "\f11e"
+}
+
+.flaticon-crane::before {
+    content: "\f11f"
+}
+
+.flaticon-triangle-left::before {
+    content: "\f120"
+}
+
+.flaticon-triangle-down::before {
+    content: "\f121"
+}
+
+.flaticon-engineering::before {
+    content: "\f122"
+}
+
+.flaticon-arrow-right::before {
+    content: "\f123"
+}
+
+.flaticon-arrow-left::before {
+    content: "\f124"
+}
+
+.flaticon-premium::before {
+    content: "\f125"
+}
+
+.flaticon-gear::before {
+    content: "\f126"
+}
+
+.flaticon-cogs::before {
+    content: "\f127"
+}
+
+.flaticon-search::before {
+    content: "\f128"
+}
+
+.flaticon-leaves::before {
+    content: "\f129"
+}
+
+.flaticon-phone::before {
+    content: "\f12a"
+}
+
+.flaticon-domain::before {
+    content: "\f12b"
+}
+
+.flaticon-eyes::before {
+    content: "\f12c"
+}
+
+.flaticon-email::before {
+    content: "\f12d"
+}
+
+.flaticon-home-run::before {
+    content: "\f12e"
+}
+
+.flaticon-workshop::before {
+    content: "\f12f"
+}
+
+.flaticon-location::before {
+    content: "\f130"
+}
+
+.flaticon-check::before {
+    content: "\f131"
+}
+
+.flaticon-transport::before {
+    content: "\f132"
+}
+
+.flaticon-excavator::before {
+    content: "\f133"
+}
+
+.flaticon-rent::before {
+    content: "\f134"
+}
+
+.flaticon-paint::before {
+    content: "\f135"
+}
+
+.flaticon-tractor::before {
+    content: "\f136"
+}
+
+.flaticon-forklift::before {
+    content: "\f137"
+}
+
+.flaticon-map-marker::before {
+    content: "\f138"
+}
+
+.flaticon-lock::before {
+    content: "\f139"
+}
+
+.flaticon-fax::before {
+    content: "\f13a"
+}
+
+.flaticon-alarm::before {
+    content: "\f13b"
+}
+
+/* Add Eder font and icon classes */
 
 @font-face {
     font-family: Eder;
