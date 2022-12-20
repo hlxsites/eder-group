@@ -84,6 +84,57 @@ export function addFavIcon(href) {
   }
 }
 
+/*
+ * Extends lib-franklin's decorateIcons adding the "eder" and "flaticon" icon sets.
+ */
+export function customDecorateIcons(element = document) {
+  function customDecorateIcon(span, collectionName, iconMap) {
+    const iconClass = span.classList[1];
+    const icon = iconClass.substring(5);
+
+    const iconPrefix = `${collectionName}-`;
+    if (!icon.startsWith(iconPrefix)) {
+      return;
+    }
+    span.classList.add(`icon-${collectionName}`);
+
+    const iconName = icon.substring(iconPrefix.length);
+    if (iconMap[iconName]) {
+      span.innerHTML = iconMap[iconName];
+    } else {
+      // eslint-disable-next-line no-console
+      console.warn(`Unknown icon with name: ${iconName} for class: ${iconClass}`);
+    }
+  }
+
+  element.querySelectorAll('span.icon').forEach(async (span) => {
+    if (span.classList.length < 2 || !span.classList[1].startsWith('icon-')) {
+      return;
+    }
+
+    const flaticonMap = {
+      placeholder: '\u{F10F}',
+      tractor: '\u{F136}',
+      cow: '\u{F107}',
+      weightlift: '\u{F119}',
+      excavator: '\u{F133}',
+      golfer: '\u{F100}',
+      'transport-car': '\u{F118}',
+      paint: '\u{F135}',
+      'excavator-construction': '\u{F106}',
+      transport: '\u{F132}',
+      leaves: '\u{F12F}',
+      engineering: '\u{F122}',
+      gear: '\u{F126}',
+    };
+
+    customDecorateIcon(span, 'flaticon', flaticonMap);
+    customDecorateIcon(span, 'eder', { icon: '\u{0041}' });
+  });
+
+  decorateIcons(element);
+}
+
 /**
  * loads everything that doesn't need to be delayed.
  */

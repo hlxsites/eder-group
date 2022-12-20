@@ -235,3 +235,16 @@ main .section[data-section-status='initialized'] {
 main .section.highlight {
   background-color: var(--highlight-background-color);
 }
+
+.icon svg {
+  height: 1em;
+}
+
+/* font icons */
+.icon-flaticon {
+  font-family: Flaticon, sans-serif;
+}
+
+.icon-eder {
+  font-family: Eder, sans-serif;
+}
