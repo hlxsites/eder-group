@@ -1,4 +1,5 @@
-import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
+import { readBlockConfig } from '../../scripts/lib-franklin.js';
+import { customDecorateIcons } from '../../scripts/scripts.js';
 
 /**
  * loads and decorates the footer
@@ -14,6 +15,6 @@ export default async function decorate(block) {
   const html = await resp.text();
   const footer = document.createElement('div');
   footer.innerHTML = html;
-  await decorateIcons(footer);
+  await customDecorateIcons(footer);
   block.append(footer);
 }
