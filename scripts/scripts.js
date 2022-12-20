@@ -109,9 +109,6 @@ export function customDecorateIcons(element = document) {
     if (customDecorateIcon(span, 'flaticon')) {
       return;
     }
-    if (customDecorateIcon(span, 'eder')) {
-      return;
-    }
 
     const icon = span.classList[1].substring(5);
     // eslint-disable-next-line no-use-before-define

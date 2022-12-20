@@ -239,12 +239,3 @@ main .section.highlight {
 .icon svg {
   height: 1em;
 }
-
-/* font icons */
-.icon-flaticon {
-  font-family: Flaticon, sans-serif;
-}
-
-.icon-eder {
-  font-family: Eder, sans-serif;
-}

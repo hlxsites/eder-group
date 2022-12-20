@@ -10,6 +10,10 @@
     font-display: swap;
 }
 
+.icon-flaticon {
+    font-family: Flaticon, sans-serif;
+}
+
 .icon-flaticon-golfer::before {
     content: "\f100"
 }
@@ -248,18 +252,4 @@
 
 .icon-flaticon-alarm::before {
     content: "\f13b"
-}
-
-/* Add Eder font and icon classes */
-
-@font-face {
-    font-family: Eder;
-    src: url("../fonts/eder.woff") format("woff");
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-}
-
-.icon-eder-icon::before {
-    content: "\0041";
 }
