@@ -52,7 +52,7 @@ function linkPicture(picture) {
   }
 }
 
-/* workaround for word not being able to add links to pictures */
+/* used to add links with pictures with word */
 export function decorateLinkedPictures(block) {
   block.querySelectorAll('picture').forEach((picture) => {
     if (!picture.closest('div.block')) {
