@@ -41,6 +41,7 @@ function buildAutoBlocks(main) {
 }
 
 function linkPicture(picture) {
+  const oldParent = picture.parentNode;
   const nextSib = picture.parentNode.nextElementSibling;
   if (nextSib) {
     const a = nextSib.querySelector('a');
@@ -48,6 +49,7 @@ function linkPicture(picture) {
       a.innerHTML = '';
       a.className = '';
       a.appendChild(picture);
+      oldParent.remove();
     }
   }
 }
