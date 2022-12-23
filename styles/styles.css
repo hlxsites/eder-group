@@ -239,3 +239,16 @@ main .section.highlight {
 .icon svg {
   height: 1em;
 }
+
+main .section.background-dark-grey {
+  background-color: #383533;
+}
+
+main .section.background-mid-grey {
+  background-color: #5D5C58;
+}
+
+main .section.background-light-grey {
+  background-color: #f1f1f1;
+}
+
