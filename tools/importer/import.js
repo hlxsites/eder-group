@@ -51,36 +51,40 @@ function transformHeros(document) {
 
 // convert teaser cards
 function transformTeaserCards(document) {
-  const cells = [['Cards  (Teaser)']];
-  document.querySelectorAll('.container-fluid figure').forEach((figure) => {
-    const container = document.createElement('div');
-    const image = figure.querySelector('img.card-background');
-    const title = figure.querySelector('.card-title');
-    container.appendChild(image);
-    container.appendChild(title);
+  if (document.querySelector('.container-fluid figure')) {
+    const cells = [['Cards  (Teaser)']];
+    document.querySelectorAll('.container-fluid figure').forEach((figure) => {
+      const container = document.createElement('div');
+      const image = figure.querySelector('img.card-background');
+      const title = figure.querySelector('.card-title');
+      container.appendChild(image);
+      container.appendChild(title);
 
-    const row = [container];
-    const content = figure.querySelectorAll('.card-content .card-entry');
-    if (content) {
-      content.forEach((entry) => row.push(entry));
-    }
-    cells.push(row);
-  });
-  const table = WebImporter.DOMUtils.createTable(cells, document);
-  document.querySelector('.container-fluid figure').replaceWith(table);
+      const row = [container];
+      const content = figure.querySelectorAll('.card-content .card-entry');
+      if (content) {
+        content.forEach((entry) => row.push(entry));
+      }
+      cells.push(row);
+    });
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    document.querySelector('.container-fluid figure').replaceWith(table);
+  }
 }
 
 // convert mini teaser cards
 function transformMiniTeaserCards(document) {
-  const cells = [['Cards  (Mini Teaser)']];
-  document.querySelectorAll('.container-fluid .card').forEach((div) => {
-    const bgImage = div.querySelector('.card-header img.card-background');
-    const logoImage = div.querySelector('.card-header img.card-logo');
-    const content = div.querySelector('.card-body');
-    cells.push([bgImage, logoImage, content]);
-  });
-  const table = WebImporter.DOMUtils.createTable(cells, document);
-  document.querySelector('.container-fluid .card').replaceWith(table);
+  if (document.querySelector('.container-fluid .card')) {
+    const cells = [['Cards  (Mini Teaser)']];
+    document.querySelectorAll('.container-fluid .card').forEach((div) => {
+      const bgImage = div.querySelector('.card-header img.card-background');
+      const logoImage = div.querySelector('.card-header img.card-logo');
+      const content = div.querySelector('.card-body');
+      cells.push([bgImage, logoImage, content]);
+    });
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    document.querySelector('.container-fluid .card').replaceWith(table);
+  }
 }
 
 // convert embed iframe objects
@@ -185,18 +189,51 @@ function makeAbsoluteLinks(main) {
   });
 }
 
+async function mapNewsMetaAttributes(url, params, meta) {
+  if (url.indexOf('/newstermine/pressemeldungen/detail') > -1) {
+    if (!window.newsList) {
+      // cache news meta data sheet for news imports
+      const response = await fetch(
+        'https://main--eder-group--hlxsites.hlx.page/export/news-161222.json',
+      );
+      const json = await response.json();
+      window.newsList = json.data;
+    }
+
+    // find news entry by page name
+    const pageName = params.originalURL.slice(0, -1).split('/').pop();
+    const news = window.newsList.find((n) => n.path_segment === pageName);
+    if (news) {
+      meta.Categories = news.categories;
+      meta.Keywords = news.keywords;
+      meta.Location = news.location;
+    } else {
+      console.warn('News item for %s not found', params.originalURL);
+    }
+  }
+}
+
 export default {
   /**
-   * Apply DOM pre processing: try to use the original JPEG image if available
+   * Apply DOM pre processing
    * @param {HTMLDocument} document The document
    */
   preprocess: ({ document }) => {
+    // try to use the original JPEG image if available
     document.querySelectorAll('img').forEach((img) => {
       if (img.src && img.src.endsWith('.webp')) {
         const jpegPath = img.getAttribute('data-regular');
         if (jpegPath) {
           img.src = jpegPath;
         }
+      }
+    });
+
+    // convert flaticons to placeholder
+    document.querySelectorAll('.card-icon').forEach((icon) => {
+      const flatIcon = icon.querySelector('.flaticon');
+      if (flatIcon) {
+        icon.textContent = `:${flatIcon.classList[1]}:`;
       }
     });
   },
@@ -210,7 +247,7 @@ export default {
    * @param {object} params Object containing some parameters given by the import process.
    * @returns {HTMLElement} The root element to be transformed
    */
-  transformDOM: ({
+  transformDOM: async ({
     // eslint-disable-next-line no-unused-vars
     document, url, html, params,
   }) => {
@@ -237,6 +274,9 @@ export default {
     if (keywords) {
       meta.Tags = keywords.content;
     }
+
+    // special meta data handling for news pages
+    await mapNewsMetaAttributes(url, params, meta);
 
     // use helper method to remove header, footer, etc.
     WebImporter.DOMUtils.remove(document.body, [
