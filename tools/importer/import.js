@@ -101,6 +101,20 @@ function transformEmbeds(document) {
   });
 }
 
+// convert images with lightbox
+function transformLightboxImage(document) {
+  // detect embed in main content
+  document.querySelectorAll('.main-content [data-lightbox]').forEach((link) => {
+    const img = link.querySelector('img');
+    if (img) {
+      const cells = [['Lightbox']];
+      cells.push([img]);
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      link.replaceWith(table);
+    }
+  });
+}
+
 // convert "coa-button" links to primary / secondary button links
 function transformButtons(document) {
   const BUTTON_MAPPINGS = [
@@ -140,6 +154,42 @@ function transformImageGallery(document) {
       gallery.replaceWith(table);
     }
   });
+}
+
+// remove contact header if present
+function cleanUpContactInfoHeader(document) {
+  const div = document.querySelector('.news-sidebar .text-muted');
+  const headline = div.nextElementSibling;
+  if (headline && headline.classList.contains('element-text') && headline.textContent.indexOf('Kontakt') > -1) {
+    headline.remove();
+  }
+  if (div) {
+    div.remove();
+  }
+}
+
+// transform contact info
+function transformContactInfo(document) {
+  const container = document.querySelector(
+    '.news-sidebar .element.element-shortcut',
+  );
+  if (container) {
+    const contacts = container.querySelectorAll('.staff-item');
+    if (contacts.length > 0) {
+      const cells = [['Contact']];
+      contacts.forEach((contact) => {
+        // email would be better but does not work as a few only use info@ mail address
+        const name = contact.querySelector('.headline-main');
+        if (name) {
+          cells.push([name.textContent]);
+        }
+      });
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      container.replaceWith(table);
+    } else {
+      container.remove();
+    }
+  }
 }
 
 // inject section delimiter and metadata for sidebar
@@ -189,6 +239,10 @@ function makeAbsoluteLinks(main) {
   });
 }
 
+/**
+ * Special handling for news meta data which are enriched with attributes
+ * from CSV sheet.
+ */
 async function mapNewsMetaAttributes(url, params, meta) {
   if (url.indexOf('/newstermine/pressemeldungen/detail') > -1) {
     if (!window.newsList) {
@@ -207,6 +261,7 @@ async function mapNewsMetaAttributes(url, params, meta) {
       meta.Categories = news.categories;
       meta.Keywords = news.keywords;
       meta.Location = news.location;
+      meta['Publication Date'] = news.datetime;
     } else {
       console.warn('News item for %s not found', params.originalURL);
     }
@@ -288,6 +343,7 @@ export default {
       '.staff .visible-ma-button',
       '.element.element-tf_footerbox',
       '#usercentrics-root',
+      '.news-backlink-wrap',
     ]);
 
     // convert all blocks
@@ -296,10 +352,13 @@ export default {
       injectSidebarSection,
       transformHeros,
       transformEmbeds,
+      transformLightboxImage,
       transformButtons,
       transformTeaserCards,
       transformMiniTeaserCards,
       transformImageGallery,
+      transformContactInfo,
+      cleanUpContactInfoHeader,
       makeProxySrcs,
       makeAbsoluteLinks,
     ].forEach((f) => f.call(null, document));
