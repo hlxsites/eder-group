@@ -10,6 +10,41 @@
  * governing permissions and limitations under the License.
  */
 
+/* fallback font for Glyphicons Halflings (normal - 400) */
+@font-face {
+  font-family: "glyphicons-halflings-normal-400-fallback";
+  size-adjust: 119.241%;
+  src: local("Arial");
+}
+
+/* fallback font for Flaticon (normal - 400) */
+@font-face {
+  font-family: "flaticon-normal-400-fallback";
+  size-adjust: 96.629%;
+  src: local("Arial");
+}
+
+/* fallback font for eder (normal - 400) */
+@font-face {
+  font-family: "eder-normal-400-fallback";
+  size-adjust: 91.379%;
+  src: local("Arial");
+}
+
+/* fallback font for Roboto (normal - 400) */
+@font-face {
+  font-family: "roboto-normal-400-fallback";
+  size-adjust: 99.569%;
+  src: local("Arial");
+}
+
+/* fallback font for Roboto (italic - 400) */
+@font-face {
+  font-family: "roboto-italic-400-fallback";
+  size-adjust: 97.629%;
+  src: local("Arial");
+}
+
  :root {
   /* colors */
   --link-color: #de010a;
