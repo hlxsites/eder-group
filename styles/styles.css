@@ -76,26 +76,26 @@ h4, h5, h6 {
 }
 
 h1 { 
-  font-size: var(--heading-font-size-xxl) 
+  font-size: var(--heading-font-size-xxl); 
   font-weight: 700;
   line-height: 1.3;
 }
 h2 { 
-  font-size: var(--heading-font-size-xl) 
+  font-size: var(--heading-font-size-xl); 
   color: #333;
   margin: 25px 0;
   font-weight: 500;
   line-height: 1.3;
 }
 h3 { 
-  font-size: var(--heading-font-size-l) 
+  font-size: var(--heading-font-size-l); 
   color: #333;
   margin: 25px 0;
   font-weight: 700;
   line-height: 1.3;
 }
 h4 { 
-  font-size: var(--heading-font-size-m) 
+  font-size: var(--heading-font-size-m); 
   color: #333;
   margin: 25px 0;
   font-weight: 700;
