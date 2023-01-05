@@ -108,41 +108,55 @@ pre {
 /* buttons */
 
 a.button:any-link, button {
-  font-family: var(--body-font-family);
-  display: inline-block;
+  background-color: #de010a;
   box-sizing: border-box;
-  text-decoration: none;
-  border: 2px solid transparent;
-  padding: 5px 30px;
-  text-align: center;
-  font-style: normal; 
-  font-weight: 600;
+  border: 1px solid #333;
+  border-color: #de010a;
+  border-radius: 5px;
+  color: #fff;
   cursor: pointer;
-  color: var(--background-color);
-  background-color: var(--link-color);
+  display: inline-block;
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  font-style: normal; 
+  font-weight: 500;
   margin: 16px 0;
-  white-space: nowrap;
+  margin-top: 25px;
+  margin-bottom: 25px;
   overflow: hidden;
+  padding: 10px 12px;
   text-overflow: ellipsis;
-  border-radius: 30px;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.2s;
+  word-wrap: break-word;
+  white-space: nowrap;
+  width: 100%;
 }
 
 a.button:hover, a.button:focus, button:hover, button:focus  {
-  background-color: var(--link-hover-color);
-  cursor: pointer;
+  border-color: #333;
+  background-color: #333;
 }
 
 button:disabled, button:disabled:hover {
   background-color: var(--overlay-background-color);
-  cursor: unset;
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 
 a.button.secondary, button.secondary {
   background-color: unset;
   border: 2px solid currentcolor;
-  color: var(--text-color)
+  border-color: #de010a;
+  color: #de010a;
 } 
 
+a.button.secondary:hover, a.button.secondary:focus, button.secondary:hover, button.secondary:focus  {
+  border-color: #333;
+    background-color: transparent;
+    color: #333;
+}
 
 main input {
   font-size: 1.25rem;
