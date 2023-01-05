@@ -117,22 +117,13 @@ function transformLightboxImage(document) {
 
 // convert "coa-button" links to primary / secondary button links
 function transformButtons(document) {
-  const BUTTON_MAPPINGS = [
-    {
-      class: 'red-coa',
-      tag: 'em',
-    },
-    {
-      class: 'red-coa-filled',
-      tag: 'strong',
-    },
-  ];
-
   document.querySelectorAll('.main-content .coa-button').forEach((button) => {
-    const buttonLink = button.innerHTML;
-    const type = BUTTON_MAPPINGS.find((e) => button.classList.contains(e.class));
-    if (type) {
-      const wrapper = document.createElement(type.tag);
+    const buttonClass = button.className.replace('coa-button', '').trim();
+    if (buttonClass.indexOf('coa') > -1) {
+      const wrapper = document.createElement(
+        buttonClass.indexOf('coa-filled') > -1 ? 'strong' : 'em',
+      );
+      const buttonLink = button.innerHTML;
       wrapper.innerHTML = buttonLink;
       button.replaceWith(wrapper);
     }
@@ -159,12 +150,12 @@ function transformImageGallery(document) {
 // remove contact header if present
 function cleanUpContactInfoHeader(document) {
   const div = document.querySelector('.news-sidebar .text-muted');
-  const headline = div.nextElementSibling;
-  if (headline && headline.classList.contains('element-text') && headline.textContent.indexOf('Kontakt') > -1) {
-    headline.remove();
-  }
   if (div) {
-    div.remove();
+    const headline = div.nextElementSibling;
+    if (headline && headline.classList.contains('element-text') && headline.textContent.indexOf('Kontakt') > -1) {
+      headline.remove();
+      div.remove();
+    }
   }
 }
 
