@@ -115,6 +115,36 @@ function transformLightboxImage(document) {
   });
 }
 
+// convert eder style headlines and other formated "headline" styles
+function transformHeadlines(document) {
+  document
+    .querySelectorAll('.main-content *[style="font-size:24px"]')
+    .forEach((headline) => {
+      const h2 = document.createElement('h2');
+      h2.innerHTML = headline.innerHTML;
+      headline.parentNode.replaceChild(h2, headline);
+    });
+  document
+    .querySelectorAll('.main-content *[style="font-size:22px"]')
+    .forEach((headline) => {
+      const h3 = document.createElement('h3');
+      h3.innerHTML = headline.innerHTML;
+      headline.parentNode.replaceChild(h3, headline);
+    });
+  document
+    .querySelectorAll('.main-content *[style="font-size:18px"]')
+    .forEach((headline) => {
+      const h4 = document.createElement('h4');
+      h4.innerHTML = headline.innerHTML;
+      headline.parentNode.replaceChild(h4, headline);
+    });
+  document.querySelectorAll('.main-content .eder').forEach((headline) => {
+    const ederHeadline = document.createElement('h6');
+    ederHeadline.innerHTML = headline.innerHTML;
+    headline.parentNode.replaceChild(ederHeadline, headline);
+  });
+}
+
 // convert "coa-button" links to primary / secondary button links
 function transformButtons(document) {
   document.querySelectorAll('.main-content .coa-button').forEach((button) => {
@@ -282,6 +312,9 @@ export default {
         icon.textContent = `:${flatIcon.classList[1]}:`;
       }
     });
+
+    // convert styled "headlines" before the styles are cleaned up
+    transformHeadlines(document);
   },
 
   /**
