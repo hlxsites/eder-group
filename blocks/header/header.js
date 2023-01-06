@@ -1,4 +1,5 @@
-import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
+import { readBlockConfig } from '../../scripts/lib-franklin.js';
+import { customDecorateIcons } from '../../scripts/scripts.js';
 
 /**
  * collapses all open nav sections
@@ -29,9 +30,9 @@ export default async function decorate(block) {
     // decorate nav DOM
     const nav = document.createElement('nav');
     nav.innerHTML = html;
-    decorateIcons(nav);
+    customDecorateIcons(nav);
 
-    const classes = ['brand', 'sections', 'tools'];
+    const classes = ['brand', 'sections', 'tools', 'brand-logo'];
     classes.forEach((e, j) => {
       const section = nav.children[j];
       if (section) section.classList.add(`nav-${e}`);
@@ -60,7 +61,28 @@ export default async function decorate(block) {
     });
     nav.prepend(hamburger);
     nav.setAttribute('aria-expanded', 'false');
-    decorateIcons(nav);
+    customDecorateIcons(nav);
+    block.append(nav);
+
+    //searchbox
+    const search = document.createElement('div');
+    search.classList.add('nav-search');
+    search.innerHTML = `<div class="search-box"><input id="search-box" type="text" placeholder=""><button type="submit">SUCHEN</button></div>
+    <div class="search-results"></div>`;
+    const results = block.querySelector('.search-results');
+    search.addEventListener('input', () => {
+      displaySearchResults(search.value, results);
+    });
+    nav.prepend(search);
+    block.append(nav);
+
+    //flaticon dots
+    const dots = document.createElement('div');
+    dots.classList.add('nav-flaticon-dots');
+    Array.prototype.forEach.call(document.querySelectorAll('.icon-flaticon-dots'), function(c){
+        dots.appendChild(c);
+    });
+    nav.prepend(dots);
     block.append(nav);
   }
 }
