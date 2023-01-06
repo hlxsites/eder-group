@@ -64,23 +64,19 @@ export default async function decorate(block) {
     customDecorateIcons(nav);
     block.append(nav);
 
-    //searchbox
+    // searchbox
     const search = document.createElement('div');
     search.classList.add('nav-search');
     search.innerHTML = `<div class="search-box"><input id="search-box" type="text" placeholder=""><button type="submit">SUCHEN</button></div>
     <div class="search-results"></div>`;
-    const results = block.querySelector('.search-results');
-    search.addEventListener('input', () => {
-      displaySearchResults(search.value, results);
-    });
     nav.prepend(search);
     block.append(nav);
 
     //flaticon dots
     const dots = document.createElement('div');
     dots.classList.add('nav-flaticon-dots');
-    Array.prototype.forEach.call(document.querySelectorAll('.icon-flaticon-dots'), function(c){
-        dots.appendChild(c);
+    Array.prototype.forEach.call(document.querySelectorAll('.icon-flaticon-dots'), function(c) {
+      dots.appendChild(c);
     });
     nav.prepend(dots);
     block.append(nav);
