@@ -312,6 +312,10 @@
     font-weight: normal;
   }
 
+  header nav .nav-tools h4 a:hover {
+    text-decoration: none;
+  }
+
   header nav .nav-sections > ul > li > ul > li a:hover {
     text-decoration: none;
   }
@@ -336,7 +340,7 @@
     background-color: white;
     padding-top: 0;
   }
-
+  
   header nav .nav-sections > ul > li[aria-expanded='true'] > ul > li:hover {
     background-color: transparent;
     color: black;
@@ -370,10 +374,6 @@
   header nav .nav-tools h4:hover {
     background-color: lightgray;
     cursor: pointer;
-    text-decoration: none;
-  }
-
-  header nav .nav-tools h4 a:hover {
     text-decoration: none;
   }
 
