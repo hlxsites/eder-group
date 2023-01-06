@@ -75,9 +75,7 @@ export default async function decorate(block) {
     // flaticon dots
     const dots = document.createElement('div');
     dots.classList.add('nav-flaticon-dots');
-    Array.prototype.forEach.call(document.querySelectorAll('.icon-flaticon-dots'), function func(c) {
-      dots.appendChild(c);
-    });
+    Array.prototype.forEach.call(document.querySelectorAll('.icon-flaticon-dots'), (c) => dots.appendChild(c));
     nav.prepend(dots);
     block.append(nav);
   }
