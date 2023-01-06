@@ -50,7 +50,7 @@ function detectSidebar(main) {
     main.style = `grid-template-rows: repeat(${numSections}, auto);`;
 
     if (sidebarOffset && Number.parseInt(sidebar.getAttribute('data-start-sidebar-at-section'), 10)) {
-      const offset = Number.parseInt(sidebar.getAttribute('data-start-sidebar-at-section'), 10)
+      const offset = Number.parseInt(sidebar.getAttribute('data-start-sidebar-at-section'), 10);
       sidebar.style = `grid-row: ${offset} / infinite;`;
     }
   }
