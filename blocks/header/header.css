@@ -212,6 +212,7 @@
     width: auto;
     padding-top: 10px;
     color: white;
+    padding-left: 20px;
   }
 
   header nav .nav-hamburger:hover {
@@ -227,6 +228,7 @@
   header nav .nav-brand-logo {
     grid-area: nav-brand-logo;
     padding-top: 3px;
+    padding-left: 20px;
   }
 
   header nav .nav-search {
@@ -291,6 +293,15 @@
     padding-left: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
+  }
+
+  header nav .nav-tools p {
+    padding: 8px 10px 0;
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: white;
   }
 
   header nav .nav-sections > ul > li > p {
@@ -365,7 +376,8 @@
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 0;
-}
+    color: white;
+  }
 
   header nav .nav-tools h4:hover {
     background-color: lightgray;
@@ -391,7 +403,7 @@
     padding-top: 15px;
     padding-right: 20px;
     padding-bottom: 15px;
-    min-width: 700px;
+    min-width: 730px;
     left: 50%;
     right: auto;
     transform: translateX(-50%);
@@ -423,8 +435,16 @@
 }
 
 @media (min-width: 850px) {
+  header nav .nav-hamburger {
+    padding-left: 0;
+  }
+
+  header nav .nav-brand-logo {
+    padding-left: 0;
+  }
+  
   header nav .nav-search {
-    padding-left: 90px;
+    padding-left: 40px;
   }
 
   header nav .nav-sections > ul > li[aria-expanded='true'] ul {
@@ -433,10 +453,6 @@
 }
 
 @media (min-width: 880px) {
-  header nav .nav-search {
-    padding-left: 90px;
-  }
-
   header nav .nav-sections > ul > li[aria-expanded='true'] ul {
     min-width: 780px;
   }
@@ -444,11 +460,11 @@
 
 @media (min-width: 920px) {
   header nav .nav-search {
-    padding-right: 50px;
+    padding-left: 90px;
   }
 
   header nav .nav-sections > ul > li[aria-expanded='true'] ul {
-    min-width: 820px;
+    min-width: 830px;
   }
 }
 
@@ -457,9 +473,10 @@
     visibility: visible;
     display: block;
     width: auto;
-    padding-left: 80px;
+    padding-left: 20px;
     padding-right: 10px;
     grid-column: hamburger / nav-brand-end;
+    padding-top: 20px;
   }
 
   header nav .nav-brand h2 {
@@ -471,10 +488,11 @@
 
   header nav .nav-sections > ul > li[aria-expanded='true'] ul {
     grid-template-columns: 300px 300px 300px;
-    min-width: 800px;
+    min-width: 850px;
     height: 130px;
     grid-template-rows: 40px;
     grid-template-rows: min-content 1fr;
+    padding-left: 10px;
   }
 
   header nav .nav-sections > ul > li[aria-expanded='true'] ul li {
@@ -493,7 +511,7 @@
   }
 
   header nav .nav-search {
-    padding-left: 80px;
+    padding-left: 90px;
   }
 
   header nav > div:last-child {
@@ -508,9 +526,8 @@
   }
 
   header nav .nav-sections > ul > li[aria-expanded='true'] ul {
-    min-width: 950px;
+    min-width: 990px;
   }
-
 }
 
 @media (min-width: 1200px) {
@@ -536,8 +553,8 @@
   }
 
   header nav .nav-search {
-    padding-left: 100px;
-    padding-right: 90px;
+    padding-left: 20px;
+    padding-right: 60px;
   }
 
   header nav .nav-sections ul li {
