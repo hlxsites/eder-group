@@ -40,6 +40,22 @@ function buildAutoBlocks(main) {
   }
 }
 
+function detectSidebar(main) {
+  const sidebar = main.querySelector('.section.sidebar');
+  if (sidebar) {
+    main.classList.add('sidebar');
+    const sidebarOffset = sidebar.getAttribute('data-start-sidebar-at-section');
+
+    const numSections = main.children.length - 1;
+    main.style = `grid-template-rows: repeat(${numSections}, auto);`;
+
+    if (sidebarOffset && Number.parseInt(sidebar.getAttribute('data-start-sidebar-at-section'), 10)) {
+      const offset = Number.parseInt(sidebar.getAttribute('data-start-sidebar-at-section'), 10);
+      sidebar.style = `grid-row: ${offset} / infinite;`;
+    }
+  }
+}
+
 function linkPicture(picture) {
   const oldParent = picture.parentNode;
   const nextSib = picture.parentNode.nextElementSibling;
@@ -76,6 +92,7 @@ export function decorateMain(main) {
   decorateLinkedPictures(main);
   decorateSections(main);
   decorateBlocks(main);
+  detectSidebar(main);
 }
 
 /**

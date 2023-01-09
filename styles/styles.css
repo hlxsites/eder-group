@@ -110,30 +110,30 @@ h4, h5, h6 {
   word-wrap: break-word;
 }
 
-h1 { 
-  font-size: var(--heading-font-size-xxl); 
+h1 {
+  font-size: var(--heading-font-size-xxl);
   font-weight: 700;
   line-height: 1.3;
 }
 
-h2 { 
-  font-size: var(--heading-font-size-xl); 
+h2 {
+  font-size: var(--heading-font-size-xl);
   color: #333;
   margin: 25px;
   font-weight: 500;
   line-height: 1.3;
 }
 
-h3 { 
-  font-size: var(--heading-font-size-l); 
+h3 {
+  font-size: var(--heading-font-size-l);
   color: #333;
   margin: 25px;
   font-weight: 700;
   line-height: 1.3;
 }
 
-h4 { 
-  font-size: var(--heading-font-size-m); 
+h4 {
+  font-size: var(--heading-font-size-m);
   color: #333;
   margin: 25px;
   font-weight: 700;
@@ -187,7 +187,7 @@ a.button:any-link, button {
   display: inline-block;
   font-family: var(--body-font-family);
   font-size: 16px;
-  font-style: normal; 
+  font-style: normal;
   font-weight: 500;
   margin-top: 25px;
   margin-bottom: 25px;
@@ -218,7 +218,7 @@ a.button.secondary, button.secondary {
   border: 2px solid currentcolor;
   border-color: #de010a;
   color: #de010a;
-} 
+}
 
 a.button.secondary:hover, a.button.secondary:focus, button.secondary:hover, button.secondary:focus  {
   border-color: #333;
@@ -232,7 +232,7 @@ main input {
   max-width: 50rem;
   display: block;
   margin-bottom: 1rem;
-  padding: 0.75rem 0.6rem;    
+  padding: 0.75rem 0.6rem;
   border-radius: 0.25rem;
   box-sizing: border-box;
   border: 1px solid var(--text-color);
@@ -289,7 +289,7 @@ main img {
 @media (min-width: 600px) {
   main .section {
     padding: 64px 32px;
-  }  
+  }
 }
 
 @media (min-width: 900px) {
@@ -299,12 +299,31 @@ main img {
     --heading-font-size-l: 28px;
     --heading-font-size-m: 23px;
     --heading-font-size-s: 17px;
-    --heading-font-size-xs: 14px;  
+    --heading-font-size-xs: 14px;
   }
-  
+
   .section > div {
     max-width: 1200px;
     margin: auto;
+  }
+
+  /* Sidebar for Pages */
+  main.sidebar {
+    display: grid;
+    grid-template-columns: auto 30%;
+  }
+
+  main.sidebar .section.sidebar {
+    grid-column: 2;
+    grid-row: 1 / infinite;
+  }
+
+  main.sidebar > *:not(.section.sidebar) {
+    grid-column: 1;
+  }
+
+  main.sidebar > .section.full-width-no-sidebar {
+    grid-column: 1 / 3;
   }
 }
 
