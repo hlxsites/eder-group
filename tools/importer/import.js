@@ -314,6 +314,7 @@ function mapNewsMetaAttributes(url, params, meta) {
       meta.Keywords = news.keywords;
       meta.Location = news.location;
       meta['Publication Date'] = news.datetime;
+      // TODO map news thumbnail
     } else {
       console.warn('News item for %s not found', params.originalURL);
     }
@@ -383,6 +384,12 @@ export default {
     const keywords = document.querySelector('meta[name="keywords"]');
     if (keywords) {
       meta.Tags = keywords.content;
+    }
+
+    // find hero image and use for meta
+    const img = document.querySelector('.main-content .news-header-image img');
+    if (img) {
+      meta.Image = img;
     }
 
     // special meta data handling for news pages
