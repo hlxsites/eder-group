@@ -99,6 +99,17 @@ function transformEmbeds(document) {
       iframe.replaceWith(table);
     }
   });
+
+  // detect self hosted videos
+  document.querySelectorAll('video').forEach((video) => {
+    const source = video.querySelector('source');
+    if (source.type && source.type.indexOf('video/mp4') > -1) {
+      const cells = [['Embed']];
+      cells.push([source.getAttribute('data-src')]);
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      video.replaceWith(table);
+    }
+  });
 }
 
 // convert images with lightbox
@@ -115,7 +126,7 @@ function transformLightboxImage(document) {
   });
 }
 
-// convert eder style headlines and other formated "headline" styles
+// convert Eder style headlines and other formatted "headline" styles
 function transformHeadlines(document) {
   document
     .querySelectorAll('.main-content *[style="font-size:24px"]')
@@ -240,6 +251,20 @@ function makeProxySrcs(document) {
   });
 }
 
+function convertPDFLinks(document) {
+  document.querySelectorAll('a').forEach((a) => {
+    if (a.href.indexOf('.pdf') > -1) {
+      const ori = a.href;
+      const converted = ori.replace('/fileadmin/user_upload/', '/assets/');
+
+      a.href = converted.toString();
+      if (a.textContent === ori) {
+        a.textContent = a.href;
+      }
+    }
+  });
+}
+
 function makeAbsoluteLinks(main) {
   main.querySelectorAll('a').forEach((a) => {
     if (a.href.startsWith('/')) {
@@ -264,15 +289,21 @@ function makeAbsoluteLinks(main) {
  * Special handling for news meta data which are enriched with attributes
  * from CSV sheet.
  */
-async function mapNewsMetaAttributes(url, params, meta) {
+function mapNewsMetaAttributes(url, params, meta) {
   if (url.indexOf('/newstermine/pressemeldungen/detail') > -1) {
     if (!window.newsList) {
       // cache news meta data sheet for news imports
-      const response = await fetch(
+      const request = new XMLHttpRequest();
+      request.open(
+        'GET',
         'https://main--eder-group--hlxsites.hlx.page/export/news-161222.json',
+        false,
       );
-      const json = await response.json();
-      window.newsList = json.data;
+      request.send(null);
+
+      if (request.status === 200) {
+        window.newsList = JSON.parse(request.responseText).data;
+      }
     }
 
     // find news entry by page name
@@ -318,15 +349,15 @@ export default {
   },
 
   /**
-   * Apply DOM operations to the provided document and return
-   * the root element to be then transformed to Markdown.
+   * Apply DOM operations to the provided document and return an array of
+   * objects ({ element: HTMLElement, path: string }) to be transformed to Markdown.
    * @param {HTMLDocument} document The document
    * @param {string} url The url of the page imported
    * @param {string} html The raw html (the document is cleaned up during preprocessing)
    * @param {object} params Object containing some parameters given by the import process.
-   * @returns {HTMLElement} The root element to be transformed
+   * @returns {Array} The { element, path } pairs to be transformed
    */
-  transformDOM: async ({
+  transform: ({
     // eslint-disable-next-line no-unused-vars
     document, url, html, params,
   }) => {
@@ -355,10 +386,12 @@ export default {
     }
 
     // special meta data handling for news pages
-    await mapNewsMetaAttributes(url, params, meta);
+    mapNewsMetaAttributes(url, params, meta);
+
+    const { body } = document;
 
     // use helper method to remove header, footer, etc.
-    WebImporter.DOMUtils.remove(document.body, [
+    WebImporter.DOMUtils.remove(body, [
       'footer',
       '.offcanvas.offcanvas-contact',
       'nav.sidebar-offcanvas',
@@ -369,6 +402,19 @@ export default {
       '#usercentrics-root',
       '.news-backlink-wrap',
     ]);
+
+    // collect all PDF links
+    const allPDFLinks = [...body.querySelectorAll('a')]
+      .filter((a) => a.href && a.href.indexOf('.pdf') > -1)
+      .map((a) => a.href);
+
+    // collect all self hosted videos
+    const allVideoLinks = [...body.querySelectorAll('video')]
+      .filter(
+        (video) => video.firstElementChild.type
+          && video.firstElementChild.type.indexOf('video/mp4') > -1,
+      )
+      .map((video) => video.firstElementChild.getAttribute('data-src'));
 
     // convert all blocks
     [
@@ -383,25 +429,26 @@ export default {
       transformImageGallery,
       transformContactInfo,
       cleanUpContactInfoHeader,
+      convertPDFLinks,
       makeProxySrcs,
       makeAbsoluteLinks,
     ].forEach((f) => f.call(null, document));
 
-    document.body.append(WebImporter.Blocks.getMetadataBlock(document, meta));
-    return document.body;
-  },
+    body.append(WebImporter.Blocks.getMetadataBlock(document, meta));
 
-  /**
-   * Return a path that describes the document being transformed (file name, nesting...).
-   * The path is then used to create the corresponding Word document.
-   * @param {HTMLDocument} document The document
-   * @param {string} url The url of the page imported
-   * @param {string} html The raw html (the document is cleaned up during preprocessing)
-   * @param {object} params Object containing some parameters given by the import process.
-   * @return {string} The path
-   */
-  generateDocumentPath: ({
-    // eslint-disable-next-line no-unused-vars
-    document, url, html, params,
-  }) => new URL(url).pathname.replace(/\.html$/, '').replace(/\/$/, ''),
+    const path = new URL(url).pathname
+      .replace(/\.html$/, '')
+      .replace(/\/$/, '');
+
+    return [
+      {
+        element: body,
+        path,
+        report: {
+          'pdf-links': allPDFLinks,
+          'video-links': allVideoLinks,
+        },
+      },
+    ];
+  },
 };
