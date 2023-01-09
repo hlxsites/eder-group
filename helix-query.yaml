@@ -40,11 +40,11 @@ indices:
         value: |
           attribute(el, 'content')
       categories:
-        select: head > meta[property="categories"]
+        select: head > meta[name="categories"]
         values: |
           attribute(el, "content")
       location:
-        select: head > meta[property="location"]
+        select: head > meta[name="location"]
         value: |
           attribute(el, "content")
       image:
