@@ -290,6 +290,8 @@ function makeAbsoluteLinks(main) {
  * from CSV sheet.
  */
 function mapNewsMetaAttributes(url, params, meta) {
+  const dateRegEx = /^(0?[1-9]|[12][0-9]|3[01])[\\/\\.](0?[1-9]|1[012])[\\/\\.](\d{2})\s([01][0-9]|2[0-3]):([0-5][0-9])$/;
+
   if (url.indexOf('/newstermine/pressemeldungen/detail') > -1) {
     if (!window.newsList) {
       // cache news meta data sheet for news imports
@@ -313,7 +315,24 @@ function mapNewsMetaAttributes(url, params, meta) {
       meta.Categories = news.categories;
       meta.Keywords = news.keywords;
       meta.Location = news.location;
-      meta['Publication Date'] = news.datetime;
+
+      // convert dates
+      const dateMatch = news.datetime.match(dateRegEx);
+      if (dateMatch) {
+        const pubDate = new Date(
+          dateMatch[3],
+          dateMatch[2] - 1,
+          dateMatch[1],
+          dateMatch[4],
+          dateMatch[5],
+        );
+        meta['Publication Date'] = new Intl.DateTimeFormat('de-DE', {
+          dateStyle: 'medium',
+          timeStyle: 'short',
+        }).format(pubDate);
+      } else {
+        meta['Publication Date'] = news.datetime;
+      }
       // TODO map news thumbnail
     } else {
       console.warn('News item for %s not found', params.originalURL);
