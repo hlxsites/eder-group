@@ -89,16 +89,29 @@ function transformMiniTeaserCards(document) {
 
 // convert embed iframe objects
 function transformEmbeds(document) {
-  // detect embed in main content
+  // detect embed iframes in main content
   document.querySelectorAll('.main-content iframe').forEach((iframe) => {
     const iframeSrc = iframe.src;
-    const cells = [['Embed']];
     if (iframeSrc) {
+      const cells = [['Embed']];
       cells.push([iframeSrc]);
       const table = WebImporter.DOMUtils.createTable(cells, document);
       iframe.replaceWith(table);
     }
   });
+
+  // detect instagram embeds
+  document
+    .querySelectorAll('.main-content blockquote.instagram-media')
+    .forEach((insta) => {
+      const instaUrl = insta.getAttribute('data-instgrm-permalink');
+      if (instaUrl) {
+        const cells = [['Embed']];
+        cells.push([instaUrl]);
+        const table = WebImporter.DOMUtils.createTable(cells, document);
+        insta.replaceWith(table);
+      }
+    });
 
   // detect self hosted videos
   document.querySelectorAll('video').forEach((video) => {
