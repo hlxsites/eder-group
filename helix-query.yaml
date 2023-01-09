@@ -21,7 +21,7 @@ indices:
       date:
         select: head > meta[name="publication-date"]
         value: |
-          dateValue(attribute(el, 'content'), 'MM.DD.YY hh:mm')
+          dateValue(attribute(el, 'content'), 'MM.DD.YYYY, hh:mm')
       lastModified:
         select: none
         value: |
