@@ -286,6 +286,14 @@ main img {
   height: auto;
 }
 
+main .default-content-wrapper > p {
+  font-size: 15px;
+}
+
+main .default-content-wrapper > p a {
+  font-weight: 600;
+}
+
 @media (min-width: 600px) {
   main .section {
     padding: 64px 32px;
