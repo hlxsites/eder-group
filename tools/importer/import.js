@@ -195,8 +195,8 @@ function cleanUpContactInfoHeader(document) {
     const headline = div.nextElementSibling;
     if (headline && headline.classList.contains('element-text') && headline.textContent.indexOf('Kontakt') > -1) {
       headline.remove();
-      div.remove();
     }
+    div.remove();
   }
 }
 
@@ -320,7 +320,7 @@ function mapNewsMetaAttributes(url, params, meta) {
       const dateMatch = news.datetime.match(dateRegEx);
       if (dateMatch) {
         const pubDate = new Date(
-          dateMatch[3],
+          `20${dateMatch[3]}`,
           dateMatch[2] - 1,
           dateMatch[1],
           dateMatch[4],
