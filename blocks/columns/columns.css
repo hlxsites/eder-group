@@ -1,13 +1,23 @@
 .columns > div {
     display: flex;
     flex-direction: column;
+    margin-left: -15px
+    margin-right: -15px;
 }
 
 .columns img {
-    width: 100%;
+    display: block;
+    max-height: 48px;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
 }
 
 @media (min-width: 900px) {
+    .columns.gray-bg > div > div {
+        background-color: #f1f1f1;
+    }
+
     .columns > div {
         display: flex;
         align-items: center;
@@ -16,7 +26,26 @@
 
     .columns > div > div {
         flex: 1;
-        margin-left: 32px;
+        width: 50%;
+        float: left;
+        position: relative;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    /*.columns > div > div:nth-child(odd) {
+        background-color: #f1f1f1;
+    }
+
+    .columns.gray-bg {
+        background-color: #f1f1f1;
+    }*/
+
+    .columns > div > div > p,
+    .columns > div > div > hr {
+        margin-left: 16.66667%;
+        width: 58.333333%;
     }
 
     .columns > div > div:first-of-type {

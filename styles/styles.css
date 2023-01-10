@@ -277,7 +277,7 @@ hr {
   margin-top: 1.5em;
   margin-bottom: 1.5em;
   border: 0;
-  border-bottom: 1px solid var(--overlay-background-color);
+  border-bottom: 1px solid var(--text-color);
 }
 
 main img {
@@ -320,4 +320,8 @@ main .section.highlight {
 
 .icon svg {
   height: 1em;
+}
+
+.gray-bg {
+  background-color: #f1f1f1;
 }
