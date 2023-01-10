@@ -280,7 +280,7 @@ hr {
   margin-top: 1.5em;
   margin-bottom: 1.5em;
   border: 0;
-  border-bottom: 1px solid var(--overlay-background-color);
+  border-bottom: 1px solid var(--text-color);
 }
 
 main img {
@@ -352,15 +352,6 @@ main .section.highlight {
   height: 1em;
 }
 
-main .section.background-dark-grey {
-  background-color: var(--background-dark-grey);
+.gray-bg {
+  background-color: #f1f1f1;
 }
-
-main .section.background-mid-grey {
-  background-color: var(--background-mid-grey);
-}
-
-main .section.background-light-grey {
-  background-color: var(--background-light-grey);
-}
-
