@@ -53,6 +53,9 @@
   --overlay-background-color: #eee;
   --highlight-background-color: #ccc;
   --text-color: #333;
+  --background-dark-grey: #383533;
+  --background-mid-grey: #5D5C58;
+  --background-light-grey: #f1f1f1;
 
   /* fonts */
   --body-font-family: roboto, arial, helvetica, sans-serif;
@@ -348,3 +351,16 @@ main .section.highlight {
 .icon svg {
   height: 1em;
 }
+
+main .section.background-dark-grey {
+  background-color: var(--background-dark-grey);
+}
+
+main .section.background-mid-grey {
+  background-color: var(--background-mid-grey);
+}
+
+main .section.background-light-grey {
+  background-color: var(--background-light-grey);
+}
+
