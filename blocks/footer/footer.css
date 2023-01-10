@@ -87,6 +87,7 @@ footer {
 
 .footer > div > div:first-child a {
   color: black;
+  font-weight: bold;
 }
 
 .footer > div > div:nth-child(2) {
@@ -143,6 +144,10 @@ footer {
 
 .footer > div > div:last-child {
     height: 70px;
+  }
+
+  .footer > div > div:first-child > p > a > picture > img {
+    width: auto;
   }
 }
 
