@@ -82,10 +82,7 @@ export function decorateLinkedPictures(block) {
  * Extends lib-franklin's decorateIcons adding the "eder" and "flaticon" icon sets.
  */
 export function customDecorateIcons(element = document) {
-  function customDecorateIcon(span, collectionName) {
-    const iconClass = span.classList[1];
-    const icon = iconClass.substring(5);
-
+  function customDecorateIcon(span, icon, collectionName) {
     const iconPrefix = `${collectionName}-`;
     if (icon.startsWith(iconPrefix)) {
       span.classList.add(`icon-${collectionName}`);
@@ -100,11 +97,11 @@ export function customDecorateIcons(element = document) {
       return;
     }
 
-    if (customDecorateIcon(span, 'flaticon')) {
+    const icon = span.classList[1].substring(5);
+    if (customDecorateIcon(span, icon, 'flaticon')) {
       return;
     }
 
-    const icon = span.classList[1].substring(5);
     // eslint-disable-next-line no-use-before-define
     const resp = await fetch(`${window.hlx.codeBasePath}/icons/${icon}.svg`);
     if (resp.ok) {
