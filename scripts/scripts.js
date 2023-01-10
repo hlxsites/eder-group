@@ -4,7 +4,6 @@ import {
   loadHeader,
   loadFooter,
   decorateButtons,
-  decorateIcons,
   decorateSections,
   decorateBlocks,
   decorateTemplateAndTheme,
@@ -79,6 +78,38 @@ export function decorateLinkedPictures(block) {
   });
 }
 
+/*
+ * Extends lib-franklin's decorateIcons adding the "eder" and "flaticon" icon sets.
+ */
+export function customDecorateIcons(element = document) {
+  const iconPrefix = 'flaticon';
+
+  element.querySelectorAll('span.icon').forEach(async (span) => {
+    if (span.classList.length < 2 || !span.classList[1].startsWith('icon-')) {
+      return;
+    }
+
+    const icon = span.classList[1].substring(5);
+    if (icon.startsWith(iconPrefix)) {
+      span.classList.add(`icon-${iconPrefix}`);
+      return;
+    }
+
+    // eslint-disable-next-line no-use-before-define
+    const resp = await fetch(`${window.hlx.codeBasePath}/icons/${icon}.svg`);
+    if (resp.ok) {
+      const iconHTML = await resp.text();
+      if (iconHTML.match(/<style/i)) {
+        const img = document.createElement('img');
+        img.src = `data:image/svg+xml,${encodeURIComponent(iconHTML)}`;
+        span.appendChild(img);
+      } else {
+        span.innerHTML = iconHTML;
+      }
+    }
+  });
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -87,7 +118,7 @@ export function decorateLinkedPictures(block) {
 export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
-  decorateIcons(main);
+  customDecorateIcons(main);
   buildAutoBlocks(main);
   decorateLinkedPictures(main);
   decorateSections(main);
@@ -123,48 +154,6 @@ export function addFavIcon(href) {
   } else {
     document.getElementsByTagName('head')[0].appendChild(link);
   }
-}
-
-/*
- * Extends lib-franklin's decorateIcons adding the "eder" and "flaticon" icon sets.
- */
-export function customDecorateIcons(element = document) {
-  function customDecorateIcon(span, collectionName) {
-    const iconClass = span.classList[1];
-    const icon = iconClass.substring(5);
-
-    const iconPrefix = `${collectionName}-`;
-    if (icon.startsWith(iconPrefix)) {
-      span.classList.add(`icon-${collectionName}`);
-      return true;
-    }
-
-    return false;
-  }
-
-  element.querySelectorAll('span.icon').forEach(async (span) => {
-    if (span.classList.length < 2 || !span.classList[1].startsWith('icon-')) {
-      return;
-    }
-
-    if (customDecorateIcon(span, 'flaticon')) {
-      return;
-    }
-
-    const icon = span.classList[1].substring(5);
-    // eslint-disable-next-line no-use-before-define
-    const resp = await fetch(`${window.hlx.codeBasePath}/icons/${icon}.svg`);
-    if (resp.ok) {
-      const iconHTML = await resp.text();
-      if (iconHTML.match(/<style/i)) {
-        const img = document.createElement('img');
-        img.src = `data:image/svg+xml,${encodeURIComponent(iconHTML)}`;
-        span.appendChild(img);
-      } else {
-        span.innerHTML = iconHTML;
-      }
-    }
-  });
 }
 
 /**
