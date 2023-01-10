@@ -4,7 +4,6 @@ import {
   loadHeader,
   loadFooter,
   decorateButtons,
-  decorateIcons,
   decorateSections,
   decorateBlocks,
   decorateTemplateAndTheme,
@@ -79,52 +78,6 @@ export function decorateLinkedPictures(block) {
   });
 }
 
-/**
- * Decorates the main element.
- * @param {Element} main The main element
- */
-// eslint-disable-next-line import/prefer-default-export
-export function decorateMain(main) {
-  // hopefully forward compatible button decoration
-  decorateButtons(main);
-  decorateIcons(main);
-  buildAutoBlocks(main);
-  decorateLinkedPictures(main);
-  decorateSections(main);
-  decorateBlocks(main);
-  detectSidebar(main);
-}
-
-/**
- * loads everything needed to get to LCP.
- */
-async function loadEager(doc) {
-  document.documentElement.lang = 'en';
-  decorateTemplateAndTheme();
-  const main = doc.querySelector('main');
-  if (main) {
-    decorateMain(main);
-    await waitForLCP(LCP_BLOCKS);
-  }
-}
-
-/**
- * Adds the favicon.
- * @param {string} href The favicon URL
- */
-export function addFavIcon(href) {
-  const link = document.createElement('link');
-  link.rel = 'icon';
-  link.type = 'image/svg+xml';
-  link.href = href;
-  const existingLink = document.querySelector('head link[rel="icon"]');
-  if (existingLink) {
-    existingLink.parentElement.replaceChild(link, existingLink);
-  } else {
-    document.getElementsByTagName('head')[0].appendChild(link);
-  }
-}
-
 /*
  * Extends lib-franklin's decorateIcons adding the "eder" and "flaticon" icon sets.
  */
@@ -165,6 +118,52 @@ export function customDecorateIcons(element = document) {
       }
     }
   });
+}
+
+/**
+ * Decorates the main element.
+ * @param {Element} main The main element
+ */
+// eslint-disable-next-line import/prefer-default-export
+export function decorateMain(main) {
+  // hopefully forward compatible button decoration
+  decorateButtons(main);
+  customDecorateIcons(main);
+  buildAutoBlocks(main);
+  decorateLinkedPictures(main);
+  decorateSections(main);
+  decorateBlocks(main);
+  detectSidebar(main);
+}
+
+/**
+ * loads everything needed to get to LCP.
+ */
+async function loadEager(doc) {
+  document.documentElement.lang = 'en';
+  decorateTemplateAndTheme();
+  const main = doc.querySelector('main');
+  if (main) {
+    decorateMain(main);
+    await waitForLCP(LCP_BLOCKS);
+  }
+}
+
+/**
+ * Adds the favicon.
+ * @param {string} href The favicon URL
+ */
+export function addFavIcon(href) {
+  const link = document.createElement('link');
+  link.rel = 'icon';
+  link.type = 'image/svg+xml';
+  link.href = href;
+  const existingLink = document.querySelector('head link[rel="icon"]');
+  if (existingLink) {
+    existingLink.parentElement.replaceChild(link, existingLink);
+  } else {
+    document.getElementsByTagName('head')[0].appendChild(link);
+  }
 }
 
 /**
