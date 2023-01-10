@@ -1,25 +1,135 @@
 .columns > div {
     display: flex;
-    flex-direction: column;
+    flex-flow: column wrap;
+    justify-content: space-around;
 }
 
-.columns img {
-    width: 100%;
+.columns > div > div {
+    flex-basis: 50%;
+    color: #de010a;
+    display: flex;
+    font-size: 14px;
+    text-align: center;
+    justify-content: center;
+    padding-top: 10px;
 }
 
-@media (min-width: 900px) {
+.columns > div > div > picture img {
+    width: 18px;
+    height: 18px;
+    padding-right: 5px;
+    padding-top: 3px;
+}
+
+.columns > div > div:first-of-type {
+    margin-left: unset;
+}
+
+@media (min-width: 400px) {
     .columns > div {
-        display: flex;
-        align-items: center;
-        flex-direction: unset;
+        flex-flow: row wrap;
     }
 
     .columns > div > div {
-        flex: 1;
-        margin-left: 32px;
+        font-size: 12px;
+        padding-top: 0;
     }
 
-    .columns > div > div:first-of-type {
-        margin-left: unset;
+    .columns > div > div > picture img {
+        width: 14px;
+        height: 14px;
+        padding-right: 5px;
+        padding-top: 3px;
+    }
+
+    .columns > div > div:last-child {
+        padding-top: 10px;
+    }
+}
+
+@media (min-width: 480px) {
+    .columns > div > div {
+        font-size: 15px;
+    }
+
+    .columns > div > div > picture img {
+        width: 16px;
+        height: 16px;
+        padding-right: 5px;
+        padding-top: 3px;
+    }
+
+    .columns > div > div:last-child {
+        padding-top: 15px;
+        text-align: left;
+    }
+}
+
+@media (min-width: 706px) {
+    .columns > div {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        flex-flow: row nowrap;
+        justify-content: unset;
+    }
+
+    .columns > div > div {
+        font-size: 14px;
+    }
+
+    .columns > div > div:last-child {
+        padding-top: 0;
+        text-align: left;
+    }
+
+    .columns > div > div > picture img {
+        width: 15px;
+        height: 15px;
+        padding-right: 5px;
+        padding-top: 3px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 772px) {
+    .columns > div {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center ;
+        padding-left: 150px;
+        padding-right: 150px;
+    }
+
+    .columns > div > div {
+        flex-basis: 50%;
+        text-align: left;
+    }
+
+    .columns > div > div:last-child {
+        flex-basis: 50%;
+        text-align: left;
+        padding-left: 80px;
+    }
+
+}
+@media (min-width: 818px) {
+    .columns > div > div {
+        font-size: 14px;
+    }
+
+    .columns > div > div > picture img {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (min-width: 992px) {
+    .columns > div > div {
+        font-size: 19px;
+    }
+
+    .columns > div > div > picture img {
+        width: 22px;
+        height: 22px;
     }
 }

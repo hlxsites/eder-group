@@ -1,0 +1,74 @@
+version: 1
+# See https://www.hlx.live/docs/setup-indexing.
+
+indices:
+  site:
+    include:
+      - '/**'
+    exclude:
+      - '/profiles/**'
+      - '/drafts/**'
+    target: /query-index.xlsx
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: |
+          attribute(el, 'content')
+      description:
+        select: head > meta[name="description"]
+        value: |
+          attribute(el, 'content')
+      date:
+        select: head > meta[name="publication-date"]
+        value: |
+          dateValue(attribute(el, 'content'), 'MM.DD.YYYY, hh:mm')
+      lastModified:
+        select: none
+        value: |
+          parseTimestamp(headers['last-modified'], 'ddd, DD MMM YYYY hh:mm:ss GMT')
+  news:
+    include:
+      - '/newstermine/pressemeldungen/**'
+    target: /newstermine/query-index-news.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: |
+          attribute(el, 'content')
+      description:
+        select: head > meta[name="description"]
+        value: |
+          attribute(el, 'content')
+      categories:
+        select: head > meta[name="categories"]
+        values: |
+          attribute(el, "content")
+      location:
+        select: head > meta[name="location"]
+        value: |
+          attribute(el, "content")
+      image:
+        select: head > meta[property="og:image"]
+        value: |
+          match(attribute(el, 'content'), 'https:\/\/[^/]+(\/.*)')
+      date:
+        select: head > meta[name="publication-date"]
+        value: |
+          dateValue(attribute(el, 'content'), 'MM.DD.YY hh:mm')
+      lastModified:
+        select: none
+        value: |
+          parseTimestamp(headers['last-modified'], 'ddd, DD MMM YYYY hh:mm:ss GMT')
+  contacts:
+    include:
+      - '/profiles/**'
+    target: /profiles/query-index.json
+    properties:
+      name:
+        select: head > meta[property="og:title"]
+        value: |
+          attribute(el, "content")
+      lastModified:
+        select: none
+        value: |
+          parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
