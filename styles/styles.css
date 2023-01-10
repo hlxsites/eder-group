@@ -327,6 +327,7 @@ main .default-content-wrapper > p a {
   main.sidebar .section.sidebar {
     grid-column: 2;
     grid-row: 1 / infinite;
+    border-left: 1px dashed #ddd;
   }
 
   main.sidebar > *:not(.section.sidebar) {
