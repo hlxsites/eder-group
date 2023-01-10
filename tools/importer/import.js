@@ -268,8 +268,7 @@ function convertPDFLinks(document) {
   document.querySelectorAll('a').forEach((a) => {
     if (a.href.indexOf('.pdf') > -1) {
       const ori = a.href;
-      const converted = ori.replace('/fileadmin/user_upload/', '/assets/');
-
+      const converted = ori.trim().toLowerCase().replaceAll('_', '-').replace('/fileadmin/user-upload/', '/assets/');
       a.href = converted.toString();
       if (a.textContent === ori) {
         a.textContent = a.href;
