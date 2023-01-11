@@ -37,7 +37,7 @@ indices:
           attribute(el, 'content')
       categories:
         select: head > meta[name="categories"]
-        values: |
+        value: |
           attribute(el, "content")
       location:
         select: head > meta[name="location"]
