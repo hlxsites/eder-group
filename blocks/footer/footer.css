@@ -128,15 +128,17 @@ footer {
 
 @media (min-width: 768px) {
   .footer > div > div:first-child {
-    max-height: 300px;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
   }
 
   .footer > div > div:first-child > ul {
-    width: 75%;
+    grid-column: 1/2;
   }
 
   .footer > div > div:first-child > p {
-    width: 25%;
+    grid-column: 2/3;
+    grid-row: 1/2;
   }
 
   .footer > div > div:nth-child(2) > ul > li {
