@@ -10,7 +10,7 @@ export default async function decorate(block) {
   const cfg = readBlockConfig(block);
   block.textContent = '';
 
-  const profilePath = cfg.footer || '/corporate';
+  const profilePath = cfg.profile || '/profiles/corporate';
   const resp = await fetch(`${profilePath}.plain.html`);
   const html = await resp.text();
 
