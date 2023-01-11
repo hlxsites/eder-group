@@ -16,13 +16,23 @@ export default function decorate(block) {
     lightbox.style.display = 'block';
   });
 
+  lightbox.querySelector('.lightbox-close').addEventListener('click', () => {
+    console.log('close');
+    document.querySelector('.actual-lightbox').style.display = 'none';
+    /*lightbox.style.display = 'none';*/
+  });
+/*
   lightbox.addEventListener('click', (e) => {
     console.log('in lightbox close click', e);
+    console.log('e.target', e.target);
+    lightbox.style.display = 'none';
+
+    console.log('lightbox', lightbox);
     if (e.target !== lightbox) {
       console.log('target is not lightbox');
       lightbox.style.display = 'none';
     } else {
       console.log('target "is" lightbox');
     }
-  });
+  });*/
 }
