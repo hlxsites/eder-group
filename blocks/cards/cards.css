@@ -1,19 +1,19 @@
-.cards > ul {
+.cards.mini-teaser > ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, 1fr);
     grid-gap: 16px;
 }
 
-.cards > ul > li {
-    border: 1px solid var(--highlight-background-color);
-    background-color: var(--background-color)
+.cards.mini-teaser > ul > li {
+    background-color: var(--background-color);
+    position: relative;
 }
 
-.cards .cards-card-body {
-    margin: 16px;
+.cards.mini-teaser .cards-card-body {
+    margin: 20px;
 }
 
 .cards .cards-card-image {
@@ -24,8 +24,99 @@
     margin-top: 0;
 }
 
-.cards > ul > li img {
+.background-mid-grey.cards-container {
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+.background-mid-grey .default-content-wrapper {
+    text-align: center;
+}
+
+.background-mid-grey .default-content-wrapper h2 {
+    font-weight: bold;
+    color: white;
+}
+
+.cards.mini-teaser .cards-card-image:first-child img {
+    object-fit: contain;
     width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
+    height: auto;
+    position: relative;
+}
+
+.cards.mini-teaser .cards-card-image:nth-child(2) {
+    top: 50px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.cards.mini-teaser .cards-card-body p {
+    font-size: 14px;
+}
+
+.cards.mini-teaser .cards-card-body .button-container a {
+    background: none;
+    border: none;
+    color: #de010a;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+@media (min-width: 600px) {
+    .cards.mini-teaser .cards-card-image:nth-child(2) {
+        top: 90px;
+    }
+}
+
+@media (min-width: 768px) {
+    .cards.mini-teaser > ul {
+        display: grid;
+        grid-gap: 30px;
+        grid-template-columns: repeat(2, 1fr);
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .background-mid-grey .default-content-wrapper h2 {
+        font-size: 25px;
+    }
+
+    .cards.mini-teaser .cards-card-image:nth-child(2) {
+        top: 50px;
+    }
+    
+}
+
+@media (min-width: 992px) {
+    .cards.mini-teaser > ul {
+        grid-gap: 20px;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .cards.mini-teaser .cards-card-image:nth-child(2) {
+        top: 20px;
+    }
+
+    .cards.mini-teaser .cards-card-body .button-container a {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 1144px) {
+    .cards.mini-teaser > ul {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    .cards.mini-teaser .cards-card-image:nth-child(2) {
+        top: 30px;
+    }
 }
