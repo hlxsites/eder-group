@@ -16,6 +16,7 @@ footer {
   font-size: 23px;
   margin: 0;
   padding-top: 20px;
+  font-weight: bold;
 }
 
 .footer picture {
@@ -171,6 +172,7 @@ footer {
 @media (min-width: 1200px) {
   .footer > div > div:nth-child(2) > ul > li {
     width: 33.333%;
+    line-height: .9em;
   }
 
   .footer > div > div {
