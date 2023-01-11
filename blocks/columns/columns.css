@@ -87,47 +87,41 @@
     color: white;
 }
 
-@media (min-width: 900px) {
-    .columns > div {
-        flex-flow: row wrap;
-    }
+/* styles for columns with custom 'row' selector, for example:
+  https://www.eder-gmbh.de/unternehmen/geschaeftsbereiche
+  */
 
-    .columns > div > div {
-        flex: 1;
-        width: 50%;
-        float: left;
-        position: relative;
-        min-height: 1px;
-        padding: 28px 15px 28px 15px;
-    }
+.columns.row > div > div > p,
+.columns.row > div > div > hr {
+    margin-left: 16.66667%;
+    width: 58.333333%;
+}
 
-    .columns > div > div > p,
-    .columns > div > div > hr {
-        margin-left: 16.66667%;
-        width: 58.333333%;
-    }
+.columns.row > div > div {
+    flex: 1;
+    width: 50%;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding: 28px 15px 28px 15px;
+}
 
-    .columns.row.columns-2-cols > div > div > p:nth-child(5) {
-        display: inline-block;
-        width: 26.5%;
-    }
+.columns.row > div > div > picture img {
+    width: 14px;
+    height: 14px;
+    padding-right: 5px;
+    padding-top: 3px;
+}
 
-    .columns.row.columns-2-cols > div > div > p:nth-child(6) {
-        display: inline-block;
-        margin-left: 5%;
-        width: 26.5%;
-    }
+.columns.row.columns-2-cols > div > div > p:nth-child(5) {
+    display: inline-block;
+    width: 26.5%;
+}
 
-    .columns.row > div > div > picture img {
-        width: 14px;
-        height: 14px;
-        padding-right: 5px;
-        padding-top: 3px;
-    }
-
-    .columns > div > div:last-child {
-        padding-top: 10px;
-    }
+.columns.row.columns-2-cols > div > div > p:nth-child(6) {
+    display: inline-block;
+    margin-left: 5%;
+    width: 26.5%;
 }
 
 @media (min-width: 400px) {

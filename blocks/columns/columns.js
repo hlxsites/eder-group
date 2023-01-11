@@ -2,7 +2,6 @@ export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-${cols.length}-cols`);
 
-  //console.log (block.classList);
   // If this is a 'card' on the page like 
   // https://www.eder-gmbh.de/unternehmen/geschaeftsbereiche/
   if (block.classList.contains('row')){
@@ -25,14 +24,8 @@ export default function decorate(block) {
       const children = blockChildren[i].children;
       for (let j = 0; j < children.length; j++) {
 
-        //console.log(children[j])
-        // Combine buttons into a div and style
+        // Add Style to Buttons
         if (children[j].classList.contains('button-container')){
-          const div1 = document.createElement('div');
-          div1.classList.add('button-container');
-          //blockChildren[i].insertBefore(div1, children[j]);
-          //console.log("here")
-          //console.log(children[j].children[0])
 
           // update classes
           children[j].children[0].classList.remove('primary')
