@@ -127,11 +127,7 @@ footer {
 
 @media (min-width: 768px) {
   .footer > div > div:first-child {
-    max-height: 340px;
-  }
-
-  .footer > div > div:first-child > p {
-    width: auto;
+    max-height: 300px;
   }
 
   .footer > div > div:first-child > ul {
