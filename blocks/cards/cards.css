@@ -68,6 +68,9 @@
     font-weight: bold;
 }
 
+.cards.mini-teaser .cards-card-body .button-container a:hover {
+    text-decoration: underline;
+}
 
 @media (min-width: 600px) {
     .cards.mini-teaser .cards-card-image:nth-child(2) {
