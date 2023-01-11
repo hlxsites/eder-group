@@ -324,7 +324,7 @@ function mapNewsMetaAttributes(url, params, meta) {
     const pageName = params.originalURL.trim().slice(0, -1).split('/').pop();
     const news = window.newsList.find((n) => n.path_segment === pageName);
     if (news) {
-      meta.Categories = news.categories;
+      meta.Categories = news.categories.replace(';', ',');
       meta.Keywords = news.keywords;
       meta.Location = news.location;
 
