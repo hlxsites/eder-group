@@ -10,6 +10,7 @@ import {
   waitForLCP,
   loadBlocks,
   loadCSS,
+  toClassName,
 } from './lib-franklin.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -53,6 +54,47 @@ function detectSidebar(main) {
       sidebar.style = `grid-row: ${offset} / infinite;`;
     }
   }
+}
+
+/**
+ * Get the list of pages from the query index
+ */
+export async function getIndex(index, indexUrl) {
+  window.pageIndex = window.pageIndex || {};
+  if (!window.pageIndex[index]) {
+    const resp = await fetch(indexUrl);
+    const json = await resp.json();
+    window.window.pageIndex[index] = json.data;
+  }
+  return window.pageIndex[index];
+}
+
+/**
+ * Get the list of press release news from the query index.
+ *
+ * @param {number} limit the number of posts to return, or -1 for no limit
+ * @returns the posts as an array
+ */
+export async function getNews(limit) {
+  let indexUrl = '/newstermine/query-index-news.json';
+  let index = 'news';
+  if (limit) {
+    indexUrl = indexUrl.concat(`?limit=${limit}`);
+    index = index.concat(`-${limit}`);
+  }
+
+  const newsEntries = await getIndex(index, indexUrl);
+  return newsEntries;
+}
+
+/**
+ * Converts an excel date to human readable date
+ *
+ * @param {excelDate} the Excel style date
+ * @returns the converted date
+ */
+export function convertDate(excelDate) {
+  return new Date(Math.round((+excelDate - (1 + 25567 + 1)) * 86400 * 1000)); // excel date
 }
 
 function linkPicture(picture) {
