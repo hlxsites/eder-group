@@ -229,6 +229,93 @@ a.button.secondary:hover, a.button.secondary:focus, button.secondary:hover, butt
     color: #333;
 }
 
+a.button.coa-button {
+    border: 1px solid #333;
+    padding: 10px 12px;
+    color: #333;
+    transition: 0.2s;
+    width: 100%;
+    font-size: 16px;
+    display: inline-block;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    text-align: center;
+    text-decoration: none;
+    word-wrap: break-word;
+    font-weight: 500;
+}
+a.button.coa-button:hover {
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+}/*
+@media screen and (min-width: 480px) {
+    a.button.coa-button {
+        min-width: 250px;
+        width: auto;
+    }
+}
+@media (max-width: 479px) {
+    a.button.coa-button {
+        margin-left: 10px;
+        margin-right: 10px;
+        width: auto;
+        display: block;
+    }
+}*/
+
+a.button.coa-button .disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+a.button.coa-button.grey-coa-filled {
+    border-color: #333;
+    background-color: transparent;
+    color: #333;
+}
+a.button.coa-button.grey-coa-filled:hover {
+    background-color: #333;
+    color: #fff;
+}
+/*
+a.button.coa-button.red-coa {
+    border-color: #de010a;
+    color: #de010a;
+}
+.coa-button.red-coa a:hover {
+    border-color: #333;
+    background-color: transparent;
+    color: #333;
+}
+.coa-button.red-coa-filled a {
+    border-color: #de010a;
+    color: #fff;
+    background-color: #de010a;
+}
+.coa-button.red-coa-filled a:hover {
+    border-color: #333;
+    background-color: #333;
+}
+.coa-button.yellow-coa a {
+    color: #355999;
+    border-color: #e2c961;
+}
+.coa-button.yellow-coa a:hover {
+    border-color: #333;
+    color: #333;
+    background-color: transparent;
+}
+.coa-button.yellow-coa-filled a {
+    color: #355999;
+    border-color: #e2c961;
+    background-color: #f9e799;
+}
+.coa-button.yellow-coa-filled a:hover {
+    border-color: #333;
+    background-color: #333;
+    color: #fff;
+}
+*/
 main input {
   font-size: 1.25rem;
   width: 100%;
@@ -354,4 +441,8 @@ main .section.highlight {
 
 .gray-bg {
   background-color: #f1f1f1;
+}
+
+.white-bg {
+  background-color: #fff;
 }
