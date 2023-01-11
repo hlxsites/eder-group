@@ -10,7 +10,6 @@ import {
   waitForLCP,
   loadBlocks,
   loadCSS,
-  toClassName,
 } from './lib-franklin.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
