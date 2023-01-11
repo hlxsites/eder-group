@@ -1,5 +1,7 @@
 .columns > div {
     display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
     flex-direction: column;
     margin-left: -15px
     margin-right: -15px;
@@ -11,6 +13,78 @@
     margin-left: auto;
     margin-right: auto;
     width: auto;
+}
+
+.columns > div > div > picture img {
+    width: 18px;
+    height: 18px;
+    padding-right: 5px;
+    padding-top: 3px;
+}
+
+.columns.two-column > div {
+    display: block;
+}
+
+.columns > div > div:first-of-type {
+    margin-left: unset;
+}
+
+.columns.two-column > div > div:first-child {
+    justify-content: flex-start;
+}
+
+.columns.two-column > div > div > picture img {
+    width: auto;
+    height: auto;
+}
+
+.columns.two-column > div > div:last-child {
+    display: block;
+    color: black;
+    text-align: left;
+}
+
+.columns.two-column > div > div h2 {
+    margin: 0;
+    font-weight: bold;
+    font-size: 22px;
+    padding-top: 25px;
+}
+
+.columns.two-column > div > div h4 {
+    display: inline-block;
+    font-weight: normal;
+    font-size: 15px;
+    margin-right: 20px;
+}
+
+.columns.two-column > div > div h4 span {
+    padding-right: 5px;
+}
+
+.columns.two-column > div > div p {
+    font-size: 17px;
+}
+
+.columns.two-column .button-container {
+    align-items: center;
+}
+
+.columns.two-column .button-container a {
+    width: auto;
+    padding-left: 80px;
+    padding-right: 90px;
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    margin: 10px;
+    font-weight: bold;
+}
+
+.columns.two-column .button-container a:hover {
+    background-color: black;
+    color: white;
 }
 
 @media (min-width: 900px) {
@@ -56,6 +130,28 @@
     }
 }
 
+@media (min-width: 400px) {
+    .columns > div {
+        flex-flow: row wrap;
+    }
+
+    .columns > div > div {
+        font-size: 12px;
+        padding-top: 0;
+    }
+
+    .columns > div > div > picture img {
+        width: 14px;
+        height: 14px;
+        padding-right: 5px;
+        padding-top: 3px;
+    }
+
+    .columns > div > div:last-child {
+        padding-top: 10px;
+    }
+}
+
 @media (min-width: 480px) {
     .columns > div > div {
         font-size: 15px;
@@ -73,6 +169,21 @@
         text-align: left;
     }
 }
+
+@media (min-width: 600px) {
+    .columns.two-column > div > div h4 {
+        display: inline-block;
+        font-weight: normal;
+        font-size: 15px;
+        margin-right: 100px;
+    }
+
+    .columns.two-column .button-container a {
+        padding-left: 50px;
+        padding-right: 50px;
+        margin: 0;
+    }
+} 
 
 @media (min-width: 706px) {
     .columns > div {
@@ -123,8 +234,57 @@
         text-align: left;
         padding-left: 80px;
     }
-
 }
+
+@media (min-width: 768px) {
+    .columns.two-column > div {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        flex-direction: row;
+        align-items: flex-start;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .columns.two-column > div > div {
+        /* flex-basis: unset; */
+        display: unset;
+    }
+
+    .columns.two-column > div > div img {
+        width: auto;
+        height: auto;
+    }
+
+    .columns.two-column > div > div:last-child {
+        padding-left: 30px;
+    }
+
+    .columns.two-column > div > div h2 {
+        padding-top: 0;
+    }
+
+    .columns.two-column > div > div h4 {
+        margin-right: 20px;
+    }
+
+    .columns.two-column > div > div h4 span {
+        padding-right: 5px;
+    }
+
+    .columns.two-column > div > div p {
+        font-size: 16px;
+    }
+
+    .columns.two-column .button-container a {
+        padding-left: 50px;
+        padding-right: 50px;
+        margin: 0;
+        margin-top: 10px;
+    }
+}
+
 @media (min-width: 818px) {
     .columns > div > div {
         font-size: 14px;
@@ -144,5 +304,27 @@
     .columns > div > div > picture img {
         width: 22px;
         height: 22px;
+    }
+
+    .columns.two-column > div > div h2 {
+        font-size: 30px;
+    }
+
+    .columns.two-column > div > div h4 {
+        font-size: 15px;
+        margin-right: 100px;
+        margin-left: 0;
+    }
+
+    .columns.two-column .button-container a {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .columns.two-column > div > div h4 {
+        font-size: 25px;
+        margin-right: 80px;
     }
 }
