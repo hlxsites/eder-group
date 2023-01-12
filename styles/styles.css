@@ -53,9 +53,11 @@
   --overlay-background-color: #eee;
   --highlight-background-color: #ccc;
   --text-color: #333;
+  --text-white: #fff;
   --background-dark-grey: #383533;
   --background-mid-grey: #5D5C58;
   --background-light-grey: #f1f1f1;
+  --background-white: #fff;
 
   /* fonts */
   --body-font-family: roboto, arial, helvetica, sans-serif;
@@ -280,7 +282,7 @@ hr {
   margin-top: 1.5em;
   margin-bottom: 1.5em;
   border: 0;
-  border-bottom: 1px solid var(--overlay-background-color);
+  border-bottom: 1px solid var(--text-color);
 }
 
 main img {
@@ -363,4 +365,3 @@ main .section.background-mid-grey {
 main .section.background-light-grey {
   background-color: var(--background-light-grey);
 }
-
