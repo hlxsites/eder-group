@@ -244,6 +244,7 @@ a.button.coa-button {
     word-wrap: break-word;
     font-weight: 500;
 }
+
 a.button.coa-button:hover {
     background-color: #333;
     color: #fff;
@@ -262,21 +263,24 @@ a.button.coa-button:hover {
         width: auto;
         display: block;
     }
-}*/
+} */
 
 a.button.coa-button .disabled {
     opacity: 0.3;
     cursor: not-allowed;
 }
+
 a.button.coa-button.grey-coa-filled {
     border-color: #333;
     background-color: transparent;
     color: #333;
 }
+
 a.button.coa-button.grey-coa-filled:hover {
     background-color: #333;
     color: #fff;
 }
+
 /*
 a.button.coa-button.red-coa {
     border-color: #de010a;

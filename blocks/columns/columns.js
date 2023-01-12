@@ -19,7 +19,7 @@ export default function decorate(block) {
       }
 
       // style each card with separators, and buttons styles based on background
-      const children = blockChildren[i].children;
+      const { children } = blockChildren[i];
       for (let j = 0; j < children.length; j += 1) {
         // Add Style to Buttons
         if (children[j].classList.contains('button-container')) {
