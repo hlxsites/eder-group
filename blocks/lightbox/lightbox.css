@@ -1,5 +1,5 @@
 .actual-lightbox {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -12,19 +12,19 @@
     display: none;
 }
 
-.lightbox-content {
+.actual-lightbox > div {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: 0 auto;
+    /*top: 50%;*/
+    /*left: 50%;*/
+    /*transform: translate(-50%, -50%);*/
     background-color: white;
-    padding: 20px;
 }
 
-.lightbox-content picture {
+.actual-lightbox > div > picture {
     max-width: 100%;
 }
 
-.lightbox picture:hover {
+.lightbox > div:first-of-type picture:hover {
     cursor: pointer;
 }

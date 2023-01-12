@@ -3,7 +3,7 @@ export default function decorate(block) {
 
   const picture = block.querySelector('picture');
 
-  const lightbox = document.createElement('div');
+  /*  const lightbox = document.createElement('div');
   block.parentNode.append(lightbox);
   // TODO find a better name than "actual-lightbox"
   lightbox.outerHTML = `<div class="actual-lightbox" aria-hidden="true" >
@@ -12,8 +12,17 @@ export default function decorate(block) {
         <a href="#" class="lightbox-close">Close</a>
     </div>
 </div>`;
+*/
 
-  const actualLightbox = document.querySelector('.actual-lightbox');
+  const closeLink = document.createElement('a');
+  closeLink.href = '#';
+  closeLink.classList.add('lightbox-close');
+  closeLink.textContent = 'Close';
+
+  const actualLightbox = block.querySelector(':scope > div:last-of-type');
+  actualLightbox.classList.add('actual-lightbox');
+  actualLightbox.setAttribute('aria-hidden', '');
+  actualLightbox.appendChild(closeLink);
 
   picture.addEventListener('click', (e) => {
     console.log('add block', e);
