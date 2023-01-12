@@ -129,13 +129,19 @@ function transformEmbeds(document) {
 function transformLightboxImage(document) {
   // detect embed in main content
   document.querySelectorAll('.main-content [data-lightbox]').forEach((link) => {
-    const img = link.querySelector('img');
-    if (img) {
-      const cells = [['Lightbox']];
-      cells.push([img]);
-      const table = WebImporter.DOMUtils.createTable(cells, document);
-      link.replaceWith(table);
+    const pageImage = link.querySelector('img');
+    const cells = [['Lightbox']];
+    if (pageImage) {
+      cells.push([pageImage]);
     }
+    if (link.href) {
+      const lightBoxImage = document.createElement('img');
+      lightBoxImage.src = link.href;
+      cells.push([lightBoxImage]);
+    }
+
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    link.replaceWith(table);
   });
 }
 
@@ -450,7 +456,7 @@ export default {
     const allVideoLinks = [...body.querySelectorAll('video')]
       .filter(
         (video) => video.firstElementChild.type
-          && video.firstElementChild.type.indexOf('video/mp4') > -1,
+        && video.firstElementChild.type.indexOf('video/mp4') > -1,
       )
       .map((video) => video.firstElementChild.getAttribute('data-src'));
 
