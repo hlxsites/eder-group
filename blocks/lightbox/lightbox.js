@@ -38,5 +38,5 @@ export default function decorate(block) {
     } else {
       console.log('target "is" lightbox');
     }
-  });*/
+  }); */
 }
