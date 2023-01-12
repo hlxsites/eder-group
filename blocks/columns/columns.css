@@ -2,17 +2,6 @@
     display: flex;
     flex-flow: column wrap;
     justify-content: space-around;
-    flex-direction: column;
-    margin-left: -15px;
-    margin-right: -15px
-}
-
-.columns img {
-    display: block;
-    max-height: 48px;
-    margin-left: auto;
-    margin-right: auto;
-    width: auto;
 }
 
 .columns > div > div > picture img {
@@ -22,9 +11,23 @@
     padding-top: 3px;
 }
 
+.columns.row img {
+    display: block;
+    max-height: 48px;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+}
+
 /* styles for columns with custom 'row' selector, for example:
   https://www.eder-gmbh.de/unternehmen/geschaeftsbereiche
   */
+
+.columns.row  {
+    flex-direction: column;
+    margin-left: -15px;
+    margin-right: -15px
+}
 
 .columns.row > div > div > p,
 .columns.row > div > div > hr {
@@ -32,13 +35,26 @@
     width: 58.3333%;
 }
 
+.columns > div > div {
+    flex-basis: 50%;
+    color: #de010a;
+    display: flex;
+    font-size: 14px;
+    text-align: center;
+    justify-content: center;
+    padding-top: 10px;
+}
+
 .columns.two-column > div {
     display: block;
 }
 
 .columns.row > div > div {
+    color: var(--text-color);
+    display: block;
     flex: 1;
     width: 50%;
+    text-align: unset;
     float: left;
     position: relative;
     min-height: 1px;

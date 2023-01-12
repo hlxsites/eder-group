@@ -249,21 +249,7 @@ a.button.coa-button:hover {
     background-color: #333;
     color: #fff;
     text-decoration: none;
-}/*
-@media screen and (min-width: 480px) {
-    a.button.coa-button {
-        min-width: 250px;
-        width: auto;
-    }
 }
-@media (max-width: 479px) {
-    a.button.coa-button {
-        margin-left: 10px;
-        margin-right: 10px;
-        width: auto;
-        display: block;
-    }
-} */
 
 a.button.coa-button .disabled {
     opacity: 0.3;
@@ -281,45 +267,6 @@ a.button.coa-button.grey-coa-filled:hover {
     color: #fff;
 }
 
-/*
-a.button.coa-button.red-coa {
-    border-color: #de010a;
-    color: #de010a;
-}
-.coa-button.red-coa a:hover {
-    border-color: #333;
-    background-color: transparent;
-    color: #333;
-}
-.coa-button.red-coa-filled a {
-    border-color: #de010a;
-    color: #fff;
-    background-color: #de010a;
-}
-.coa-button.red-coa-filled a:hover {
-    border-color: #333;
-    background-color: #333;
-}
-.coa-button.yellow-coa a {
-    color: #355999;
-    border-color: #e2c961;
-}
-.coa-button.yellow-coa a:hover {
-    border-color: #333;
-    color: #333;
-    background-color: transparent;
-}
-.coa-button.yellow-coa-filled a {
-    color: #355999;
-    border-color: #e2c961;
-    background-color: #f9e799;
-}
-.coa-button.yellow-coa-filled a:hover {
-    border-color: #333;
-    background-color: #333;
-    color: #fff;
-}
-*/
 main input {
   font-size: 1.25rem;
   width: 100%;
@@ -441,6 +388,18 @@ main .section.highlight {
 
 .icon svg {
   height: 25px;
+}
+
+main .section.background-dark-grey {
+  background-color: var(--background-dark-grey);
+}
+
+main .section.background-mid-grey {
+  background-color: var(--background-mid-grey);
+}
+
+main .section.background-light-grey {
+  background-color: var(--background-light-grey);
 }
 
 .gray-bg {
