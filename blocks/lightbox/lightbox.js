@@ -23,10 +23,8 @@ export default function decorate(block) {
   actualLightbox.querySelector('.lightbox-close').addEventListener('click', () => {
     console.log('close');
     actualLightbox.setAttribute('aria-hidden', '');
-    //document.querySelector('.actual-lightbox').setAttribute('aria-hidden', '');
-    //actualLightbox.style.display = 'unset';
   });
-  
+
 /*
   lightbox.addEventListener('click', (e) => {
     console.log('in lightbox close click', e);
