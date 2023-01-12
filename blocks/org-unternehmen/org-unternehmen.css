@@ -23,6 +23,14 @@
     flex-direction: column;
 }
 
+.org-unternehmen .gray-bg {
+    background-color: var(--background-light-grey);
+}
+
+.org-unternehmen .white-bg {
+    background-color: var(--background-light-white);
+}
+
 .org-unternehmen > div > div > p,
 .org-unternehmen > div > div > hr {
     margin-left: 16.6667%;
@@ -55,9 +63,9 @@
 
 
 .org-unternehmen a.button.secondary {
-    border: 1px solid #333;
+    border: 1px solid var(--text-color);
     padding: 10px 12px;
-    color: #333;
+    color: var(--text-color);
     transition: 0.2s;
     width: 100%;
     font-size: 16px;
@@ -71,8 +79,8 @@
 }
 
 .org-unternehmen a.button.secondary:hover {
-    background-color: #333;
-    color: #fff;
+    background-color: var(--text-color);
+    color: var(--text-white);
     text-decoration: none;
 }
 
@@ -82,14 +90,14 @@
 }
 
 .org-unternehmen a.button.secondary.grey-filled {
-    border-color: #333;
+    border-color: var(--text-color);
+    color: var(--text-color);
     background-color: transparent;
-    color: #333;
 }
 
 .org-unternehmen a.button.secondary.grey-filled:hover {
-    background-color: #333;
-    color: #fff;
+    background-color: var(--text-color);
+    color: var(--text-white);
 }
 
 .org-unternehmen > div > div:first-of-type {
@@ -140,10 +148,6 @@
         justify-content: unset;
     }
 
-    .org-unternehmen > div > div {
-        /* font-size: 14px; */
-    }
-
     .org-unternehmen.column-2-cols > div {
         text-align:unset;    
     }
@@ -183,10 +187,6 @@
 }
 
 @media (min-width: 818px) {
-    .org-unternehmen > div > div {
-        /* font-size: 14px; */
-    }
-
     .org-unternehmen > div > div > picture img {
         width: 18px;
         height: 18px;
