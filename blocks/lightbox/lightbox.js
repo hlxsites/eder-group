@@ -4,23 +4,29 @@ export default function decorate(block) {
   const picture = block.querySelector('picture');
 
   const lightbox = document.createElement('div');
-  lightbox.classList.add('actual-lightbox');
-  lightbox.innerHTML = `<div class="lightbox-content">
-    ${picture.outerHTML}
-    <a href="#" class="lightbox-close">Close</a>
+  block.parentNode.append(lightbox);
+  // TODO find a better name than "actual-lightbox"
+  lightbox.outerHTML = `<div class="actual-lightbox" aria-hidden="true" >
+    <div class="lightbox-content">
+        ${picture.outerHTML}
+        <a href="#" class="lightbox-close">Close</a>
+    </div>
 </div>`;
 
-  block.append(lightbox);
+  const actualLightbox = document.querySelector('.actual-lightbox');
 
-  block.addEventListener('click', () => {
-    lightbox.style.display = 'block';
+  picture.addEventListener('click', (e) => {
+    console.log('add block', e);
+    actualLightbox.removeAttribute('aria-hidden');
   });
 
-  lightbox.querySelector('.lightbox-close').addEventListener('click', () => {
+  actualLightbox.querySelector('.lightbox-close').addEventListener('click', () => {
     console.log('close');
-    document.querySelector('.actual-lightbox').style.display = 'none';
-    /*lightbox.style.display = 'none';*/
+    actualLightbox.setAttribute('aria-hidden', '');
+    //document.querySelector('.actual-lightbox').setAttribute('aria-hidden', '');
+    //actualLightbox.style.display = 'unset';
   });
+  
 /*
   lightbox.addEventListener('click', (e) => {
     console.log('in lightbox close click', e);
