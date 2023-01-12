@@ -22,6 +22,9 @@ function buildHeroBlock(main) {
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
     const section = document.createElement('div');
     section.append(buildBlock('hero', { elems: [picture, h1] }));
+
+    // consider a sidebar on every page and automatically set full width no sidebar for hero block.
+    section.insertAdjacentHTML('beforeend', '<div class="section-metadata"><div><div>style</div><div>Full-width-no-sidebar</div></div></div>');
     main.prepend(section);
   }
 }
