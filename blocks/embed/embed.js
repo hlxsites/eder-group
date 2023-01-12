@@ -33,7 +33,7 @@ const embedYoutube = (url, autoplay) => {
 
 const embedInstagram = async (url) => {
   // offload the instagram template to only load the large template if really needed
-  const mod = await import('/blocks/embed/embed-instagram.js');
+  const mod = await import('./embed-instagram.js');
   let embedHTML = '';
   if (mod.default) {
     embedHTML = await mod.default(url);
