@@ -24,3 +24,7 @@
 .lightbox-content picture {
     max-width: 100%;
 }
+
+.lightbox picture:hover {
+    cursor: pointer;
+}
