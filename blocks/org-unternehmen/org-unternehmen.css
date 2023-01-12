@@ -2,9 +2,6 @@
     display: flex;
     flex-flow: column wrap;
     justify-content: space-around;
-
-    /* margin-left: -15px;
-    margin-right: -15px */
 }
 
 .org-unternehmen img {
@@ -54,6 +51,45 @@
     display: inline-block;
     margin-left: 5%;
     width: 26.5%;
+}
+
+
+.org-unternehmen a.button.secondary {
+    border: 1px solid #333;
+    padding: 10px 12px;
+    color: #333;
+    transition: 0.2s;
+    width: 100%;
+    font-size: 16px;
+    display: inline-block;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    text-align: center;
+    text-decoration: none;
+    word-wrap: break-word;
+    font-weight: 500;
+}
+
+.org-unternehmen a.button.secondary:hover {
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+}
+
+.org-unternehmen a.button.secondary .disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.org-unternehmen a.button.secondary.grey-filled {
+    border-color: #333;
+    background-color: transparent;
+    color: #333;
+}
+
+.org-unternehmen a.button.secondary.grey-filled:hover {
+    background-color: #333;
+    color: #fff;
 }
 
 .org-unternehmen > div > div:first-of-type {

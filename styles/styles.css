@@ -229,44 +229,6 @@ a.button.secondary:hover, a.button.secondary:focus, button.secondary:hover, butt
     color: #333;
 }
 
-a.button.coa-button {
-    border: 1px solid #333;
-    padding: 10px 12px;
-    color: #333;
-    transition: 0.2s;
-    width: 100%;
-    font-size: 16px;
-    display: inline-block;
-    margin-top: 25px;
-    margin-bottom: 25px;
-    text-align: center;
-    text-decoration: none;
-    word-wrap: break-word;
-    font-weight: 500;
-}
-
-a.button.coa-button:hover {
-    background-color: #333;
-    color: #fff;
-    text-decoration: none;
-}
-
-a.button.coa-button .disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-}
-
-a.button.coa-button.grey-coa-filled {
-    border-color: #333;
-    background-color: transparent;
-    color: #333;
-}
-
-a.button.coa-button.grey-coa-filled:hover {
-    background-color: #333;
-    color: #fff;
-}
-
 main input {
   font-size: 1.25rem;
   width: 100%;

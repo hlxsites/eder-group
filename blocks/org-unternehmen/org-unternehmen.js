@@ -2,9 +2,8 @@ export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-${cols.length}-cols`);
 
-  // If this is a 'card' on the page like
+  // Used for sytling cards like on
   // https://www.eder-gmbh.de/unternehmen/geschaeftsbereiche/
-  // if (block.classList.contains('row')) {
   const blockChildren = block.firstElementChild.children;
   for (let i = 0; i < blockChildren.length; i += 1) {
     // alternate backgroun color between cards
@@ -14,18 +13,14 @@ export default function decorate(block) {
       blockChildren[i].classList.add('white-bg');
     }
 
-    if (block.classList.contains('button-container')) {
-      blockChildren[i].classList.add('grey-button-filled');
-    }
-
     // style each card with separators, and buttons styles based on background
     const { children } = blockChildren[i];
     for (let j = 0; j < children.length; j += 1) {
       // Add Style to Buttons
       if (children[j].classList.contains('button-container')) {
-        // update classes
+        // update classes to include button styles
         children[j].children[0].classList.remove('primary');
-        children[j].children[0].classList.add('coa-button', 'grey-coa-filled');
+        children[j].children[0].classList.add('secondary', 'grey-filled');
       }
 
       if (j === 0 || j === 2) {
@@ -38,5 +33,4 @@ export default function decorate(block) {
       }
     }
   }
-  // }
 }
