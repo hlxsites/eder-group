@@ -90,6 +90,11 @@ const embedInstagram = (url) => {
   return embedHTML;
 };
 
+const embedVideo = (url) => `
+  <figure class="video"><div class="video-embed">
+  <video  controls="" autoplay="" class="video-embed-item"><source src="${url}" type="video/mp4"></video>
+  </div></figure>`;
+
 const loadEmbed = (block, link, autoplay) => {
   if (block.classList.contains('embed-is-loaded')) {
     return;
@@ -107,6 +112,10 @@ const loadEmbed = (block, link, autoplay) => {
     {
       match: ['instagram'],
       embed: embedInstagram,
+    },
+    {
+      match: ['.mp4'],
+      embed: embedVideo,
     },
   ];
 

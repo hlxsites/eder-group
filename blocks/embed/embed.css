@@ -9,6 +9,14 @@ main .embed > div {
   justify-content: center;
 }
 
+main .embed figure.video {
+  margin: 0;
+}
+
+main .embed video.video-embed-item {
+  max-width: 800px;
+}
+
 main .embed .embed-placeholder {
   width: 100%;
   aspect-ratio: 16 / 9;
