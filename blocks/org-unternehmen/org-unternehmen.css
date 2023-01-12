@@ -1,0 +1,158 @@
+.org-unternehmen > div {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+
+    /* margin-left: -15px;
+    margin-right: -15px */
+}
+
+.org-unternehmen img {
+    display: block;
+    max-height: 48px;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+}
+
+.org-unternehmen > div > div > picture img {
+    width: 18px;
+    height: 18px;
+    padding-right: 5px;
+    padding-top: 3px;
+}
+
+.org-unternehmen {
+    flex-direction: column;
+}
+
+.org-unternehmen > div > div > p,
+.org-unternehmen > div > div > hr {
+    margin-left: 16.6667%;
+    width: 58.3333%;
+}
+
+.org-unternehmen > div > div {
+    flex-basis: 50%;
+    justify-content: center;
+    color: var(--text-color);
+    display: block;
+    width: 50%;
+    text-align: unset;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding: 28px 15px;
+}
+
+.org-unternehmen.block.columns-2-cols > div > div > p:nth-child(5) {
+    display: inline-block;
+    width: 26.5%;
+}
+
+.org-unternehmen.block.columns-2-cols > div > div > p:nth-child(6) {
+    display: inline-block;
+    margin-left: 5%;
+    width: 26.5%;
+}
+
+.org-unternehmen > div > div:first-of-type {
+    margin-left: unset;
+}
+
+
+@media (min-width: 400px) {
+    .org-unternehmen > div {
+        flex-flow: row wrap;
+    }
+
+    .org-unternehmen > div > div {
+        /* font-size: 12px; */
+        padding-top: 0;
+    }
+
+    .org-unternehmen > div > div > picture img {
+        width: 14px;
+        height: 14px;
+        padding-right: 5px;
+        padding-top: 3px;
+    }
+
+    .org-unternehmen > div > div:last-child {
+        padding-top: 10px;
+    }
+}
+
+@media (min-width: 480px) {
+    .org-unternehmen > div > div > picture img {
+        width: 16px;
+        height: 16px;
+        padding-right: 5px;
+        padding-top: 3px;
+    }
+
+    .org-unternehmen > div > div:last-child {
+        padding-top: 15px;
+        text-align: left;
+    }
+}
+
+@media (min-width: 706px) {
+    .org-unternehmen > div {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: unset;
+    }
+
+    .org-unternehmen > div > div {
+        /* font-size: 14px; */
+    }
+
+    .org-unternehmen.column-2-cols > div {
+        text-align:unset;    
+    }
+
+    .org-unternehmen > div > div:last-child {
+        padding-top: 0;
+        text-align: left;
+    }
+
+    .org-unternehmen > div > div > picture img {
+        width: 15px;
+        height: 15px;
+        padding-right: 5px;
+        padding-top: 3px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 772px) {
+    .org-unternehmen > div {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center ;
+        padding-left: 150px;
+        padding-right: 150px;
+    }
+
+    .org-unternehmen > div > div {
+        flex-basis: 50%;
+        text-align: left;
+    }
+
+    .org-unternehmen > div > div:last-child {
+        flex-basis: 50%;
+        text-align: left;
+        padding-left: 80px;
+    }
+}
+
+@media (min-width: 818px) {
+    .org-unternehmen > div > div {
+        /* font-size: 14px; */
+    }
+
+    .org-unternehmen > div > div > picture img {
+        width: 18px;
+        height: 18px;
+    }
+}
